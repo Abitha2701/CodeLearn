@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const express = require('express');
+
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },                          // ✅ Add required

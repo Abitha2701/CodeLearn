@@ -69,7 +69,7 @@ app.get('/api/profile', async (req, res) => {
     res.status(200).json({
       name: user.name,
       email: user.email,
-      preferredLanguages: user.preferredLanguages
+      preferredLanguages: user.preferredLanguages,
     });
   } catch (err) {
     res.status(500).json({ message: 'Error fetching profile', error: err.message });

@@ -61,13 +61,18 @@ const handleSubmit = async (e) => {
       return;
     }
 
-    navigate('/dashboard', {
-       state: {
-    name: isSignUp ? name : data.name,
+  navigate('/dashboard', {
+  state: {
+    name: isSignUp ? name : data.user.name,
     email: email,
-    selectedLanguages: isSignUp ? selectedLanguages : data.preferredLanguages || [],
+    selectedLanguages: isSignUp ? selectedLanguages : data.user.preferredLanguages || [],
   }
 });
+{(!selectedLanguages || selectedLanguages.length === 0) && (
+  <p>No preferred languages selected. Go to Profile to add some.</p>
+)}
+
+
   } catch (error) {
     console.error(error);
     alert('Network error');

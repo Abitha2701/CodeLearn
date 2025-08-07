@@ -79,17 +79,36 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Recent Lessons */}
-        <div className="recent-lessons">
-          <h2>📚 Lessons</h2>
-          <ul>
-            <li>JavaScript Variables and Data Types <span>15 min</span></li>
-            <li>Functions and Scope <span>20 min</span></li>
-            <li>React Components Basics <span>25 min</span></li>
-            <li>Python Lists and Loops <span>18 min</span></li>
-            <li>C++ Classes & Objects <span>22 min</span></li>
-          </ul>
-        </div>
+  <div className="recent-lessons">
+        <h2>📚 Lessons for You</h2>
+        <ul className="lesson-list">
+          {selectedLanguages && selectedLanguages.includes("JavaScript") && (
+            <li className="lesson-item">
+              <span className="lesson-title">JavaScript: Variables and Data Types</span>
+              <span className="lesson-duration">15 min</span>
+            </li>
+          )}
+          {selectedLanguages && selectedLanguages.includes("React") && (
+            <li className="lesson-item">
+              <span className="lesson-title">React: Components Basics</span>
+              <span className="lesson-duration">25 min</span>
+            </li>
+          )}
+          {selectedLanguages && selectedLanguages.includes("Python") && (
+            <li className="lesson-item">
+              <span className="lesson-title">Python: Lists and Loops</span>
+              <span className="lesson-duration">18 min</span>
+            </li>
+          )}
+          {selectedLanguages && selectedLanguages.includes("C++") && (
+            <li className="lesson-item">
+              <span className="lesson-title">C++: Classes & Objects</span>
+              <span className="lesson-duration">22 min</span>
+            </li>
+          )}
+        </ul>
+      </div>
+
       </section>
     </div>
   );

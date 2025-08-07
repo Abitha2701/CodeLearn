@@ -1,0 +1,157 @@
+/* Container & Card */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background: linear-gradient(to right, #ede7f6, #f3e5f5);
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.profile-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(103, 58, 183, 0.2);
+  width: 400px;
+  text-align: center;
+  animation: fadeInUp 0.8s ease;
+}
+
+.profile-avatar {
+  background: #673ab7;
+  color: white;
+  font-size: 32px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  line-height: 80px;
+  margin: 0 auto 20px;
+  font-weight: bold;
+  animation: bounceIn 1s ease;
+}
+
+/* Text Headers */
+h2 {
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin: 20px 0 10px;
+  font-weight: 500;
+}
+
+/* Language Display */
+.language-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.badge {
+  background-color: #d1c4e9;
+  color: #311b92;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.fade-in-badge {
+  animation: fadeIn 0.5s ease;
+}
+
+.no-langs {
+  color: #888;
+  font-size: 14px;
+}
+
+/* Language Edit Options */
+.language-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.lang-chip {
+  display: flex;
+  align-items: center;
+  background: #f0f0f0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+  transition: 0.3s ease;
+}
+
+.lang-chip.selected {
+  background-color: #d1c4e9;
+  color: #311b92;
+}
+
+/* Buttons */
+.profile-actions button {
+  margin: 10px 6px;
+  padding: 8px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #673ab7;
+  color: white;
+}
+
+.save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

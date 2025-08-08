@@ -27,12 +27,19 @@ const Dashboard = () => {
     navigate('/profile', { state: { name, email, selectedLanguages } });
   };
 
-  const allCourses = {
-    JavaScript: { completed: 0, total: 20 },
-    Python: { completed: 3, total: 25 },
-    "C++": { completed: 10, total: 30 },
-    React: { completed: 5, total: 15 },
-  };
+const allCourses = {
+  Python: { completed: 0, total: 25 },
+  Java: { completed: 0, total: 28 },
+  "C++": { completed: 0, total: 30 },
+  React: { completed: 0, total: 15 },
+  "Node.js": { completed: 0, total: 18 },
+  HTML: { completed: 0, total: 12 },
+  CSS: { completed: 0, total: 14 },
+  JavaScript: { completed: 0, total: 20 },
+  Go: { completed: 0, total: 16 },
+  Rust: { completed: 0, total: 22 },
+};
+
 
   const coursesToShow = selectedLanguages
     ? selectedLanguages.map(lang => ({
@@ -70,6 +77,8 @@ const Dashboard = () => {
           <div className="action-card">🌟 Explore New Courses</div>
         </div>
 
+   
+
         <h1>Learning Journey</h1>
         <p className="subtext">You're doing great! Keep up the momentum and continue building your programming skills.</p>
 
@@ -80,17 +89,16 @@ const Dashboard = () => {
           <div className="stat-box"><h2>0 of 20 📘</h2><p>Lessons Completed</p></div>
           <div className="stat-box"><h2>Jul 2025 🗓</h2><p>Learning Since</p></div>
         </div>
-
-        {/* Courses */}
+         {/* Courses */}
         <div className="course-progress">
-          <h2>🏆 Courses</h2>
+          <h2>🏆 Your Courses</h2>
           <div className="courses-grid">
             {coursesToShow.length > 0 ? (
               coursesToShow.map((course, index) => (
                 <div className="course-card" key={index}>
                   <h3 className="course-title">{course.title}</h3>
                   <p>{course.completed} of {course.total} lessons completed</p>
-                  <button className="continue-btn">Continue Learning →</button>
+                  <button className="continue-btn">Start Learning →</button>
                 </div>
               ))
             ) : (
@@ -98,6 +106,38 @@ const Dashboard = () => {
             )}
           </div>
         </div>
+{/* Courses Available */}
+<div className="available-courses">
+  <h2>📖 Courses Available</h2>
+  <div className="courses-grid">
+    {Object.keys(allCourses).map((course, index) => {
+      const courseIcons = {
+        Python: "🐍",
+        Java: "☕",
+        "C++": "💻",
+        React: "⚛️",
+        "Node.js": "🌿",
+        HTML: "📄",
+        CSS: "🎨",
+        JavaScript: "📜",
+        Go: "🌀",
+        Rust: "🦀"
+      };
+
+      return (
+        <div className="course-card" key={index}>
+          <div className="course-icon">{courseIcons[course] || "📘"}</div>
+          <h3 className="course-title">{course}</h3>
+          <p>{allCourses[course].total} total lessons</p>
+          <button className="continue-btn">View Course →</button>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+
+    
 
         {/* Lessons */}
         <div className="recent-lessons">

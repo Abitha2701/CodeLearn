@@ -1,0 +1,133 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f9fafb;
+  overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-fadein { animation: fadein 1s ease-out; }
+.animate-fadeup { animation: fadeup 0.8s ease-out; }
+.animate-pop { animation: pop 0.5s ease-out; }
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #6f3fe3, #9b6ff3);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero-text p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+.start-btn {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background: white;
+  color: #6f3fe3;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.start-btn:hover {
+  background: #eee6ff;
+  transform: translateY(-3px);
+}
+
+/* Categories Slider */
+.categories {
+  padding: 2rem;
+  text-align: center;
+}
+.category-slider {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+}
+.category-slider::-webkit-scrollbar {
+  display: none;
+}
+.category-card {
+  background: white;
+  padding: 1rem;
+  width: 100px;
+  min-width: 100px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.category-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+.category-icon {
+  font-size: 2rem;
+  color: #6f3fe3;
+  margin-bottom: 0.5rem;
+}
+
+/* Popular Courses Grid */
+.popular {
+  padding: 2rem;
+}
+.course-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.course-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.course-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.course-icon {
+  font-size: 3rem;
+  color: #6f3fe3;
+  margin-bottom: 1rem;
+}
+.course-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.course-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+}

@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Dashboard.css';
+// top imports
+import { COURSE_SLUGS } from '../data/learningPaths';
+
+
+
 
 const Dashboard = () => {
+  
   const location = useLocation();
   const navigate = useNavigate();
   const { name, email, selectedLanguages } = location.state || {};
+  const openCourse = (courseName) => {
+  const courseId = COURSE_SLUGS[courseName] || courseName.toLowerCase().replace(/[^a-z0-9]+/g, '');
+  navigate(`/course/${courseId}`, { state: { name, email, selectedLanguages } });
+};
 
   // Slideshow
   const slides = [
@@ -98,7 +108,9 @@ const allCourses = {
                 <div className="course-card" key={index}>
                   <h3 className="course-title">{course.title}</h3>
                   <p>{course.completed} of {course.total} lessons completed</p>
-                  <button className="continue-btn">Start Learning →</button>
+                  <button className="continue-btn" onClick={() => openCourse(course.title)}>
+  Start Learning →
+</button>
                 </div>
               ))
             ) : (
@@ -129,16 +141,15 @@ const allCourses = {
           <div className="course-icon">{courseIcons[course] || "📘"}</div>
           <h3 className="course-title">{course}</h3>
           <p>{allCourses[course].total} total lessons</p>
-          <button className="continue-btn">View Course →</button>
+          <button className="continue-btn" onClick={() => openCourse(course)}>
+  View Course →
+</button>
         </div>
       );
     })}
   </div>
 </div>
-
-
     
-
         {/* Lessons */}
         <div className="recent-lessons">
           <h2>📚 Lessons for You</h2>

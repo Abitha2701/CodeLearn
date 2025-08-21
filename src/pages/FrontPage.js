@@ -46,7 +46,7 @@ const navigate = useNavigate();
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-text animate-fadein">
-          <h1>Learn Skills From Our Top Instructors</h1>
+          <h1>Learn Skills From Our Top Courses</h1>
           <p>Master web development languages through engaging, hands-on lessons.</p>
        <button className="start-btn" onClick={() => navigate("/home")}>
             Start Learning
@@ -80,7 +80,6 @@ const navigate = useNavigate();
           ))}
         </div>
       </section>
-
     </div>
   );
 }

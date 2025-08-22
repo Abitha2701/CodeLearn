@@ -262,6 +262,97 @@ body {
 }
 .continue-btn:hover { background: #594ad1; }
 
+.explore-all-btn {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+}
+
+.explore-all-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+}
+
+.course-description {
+  color: #666;
+  font-size: 14px;
+  margin: 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.empty-state-card {
+  background: #f8f9ff;
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.empty-state-card h3 {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-card p {
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: #666;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 16px;
+}
+
+.course-stats {
+  color: #888;
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.course-levels {
+  display: flex;
+  gap: 0.5rem;
+  margin: 8px 0;
+  flex-wrap: wrap;
+}
+
+.level-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.level-badge.beginner {
+  background: #e8f5e8;
+  color: #4caf50;
+}
+
+.level-badge.intermediate {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+.level-badge.advanced {
+  background: #ffebee;
+  color: #f44336;
+}
+
 .lesson-item {
   display: flex;
   justify-content: space-between;

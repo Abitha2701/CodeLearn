@@ -1,21 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Dashboard.css';
 // top imports
 import { COURSE_SLUGS } from '../data/learningPaths';
+import { COMPREHENSIVE_COURSES } from '../data/comprehensiveCourses';
 
 
 
 
 const Dashboard = () => {
-  
   const location = useLocation();
   const navigate = useNavigate();
-  const { name, email, selectedLanguages } = location.state || {};
+  const { user, logout, isAuthenticated } = useAuth();
+  
+  // Use auth context user data or fallback to location state
+  const name = user?.name || location.state?.name || 'Learner';
+  const email = user?.email || location.state?.email || '';
+  const selectedLanguages = user?.preferredLanguages || location.state?.selectedLanguages || [];
+
+  // Redirect to home if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated && !location.state) {
+      navigate('/');
+    }
+  }, [isAuthenticated, location.state, navigate]);
   const openCourse = (courseName) => {
-  const courseId = COURSE_SLUGS[courseName] || courseName.toLowerCase().replace(/[^a-z0-9]+/g, '');
-  navigate(`/course/${courseId}`, { state: { name, email, selectedLanguages } });
-};
+    // First try to find the exact key in COMPREHENSIVE_COURSES
+    const exactKey = Object.keys(COMPREHENSIVE_COURSES).find(key => 
+      COMPREHENSIVE_COURSES[key].title === courseName
+    );
+    
+    if (exactKey) {
+      navigate(`/course-details/${exactKey}`, { state: { name, email, selectedLanguages } });
+      return;
+    }
+    
+    // Fallback to COURSE_SLUGS mapping for learning paths
+    const courseId = COURSE_SLUGS[courseName] || courseName.toLowerCase().replace(/[^a-z0-9]+/g, '');
+    navigate(`/course/${courseId}`, { state: { name, email, selectedLanguages } });
+  };
 
   // Slideshow
   const slides = [
@@ -35,6 +59,16 @@ const Dashboard = () => {
 
   const goToProfile = () => {
     navigate('/profile', { state: { name, email, selectedLanguages } });
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+      navigate('/');
+    }
   };
 
 const allCourses = {
@@ -67,7 +101,7 @@ const allCourses = {
         <div className="header-right">
           <div className="user-welcome">Welcome {name || 'Learner'}!!</div>
           <div className="profile-icon" onClick={goToProfile}>👤</div>
-          <button className="logout-btn">Logout</button>
+          <button className="logout-btn" onClick={handleLogout}>Logout</button>
         </div>
       </header>
       
@@ -84,7 +118,13 @@ const allCourses = {
         <div className="quick-actions">
           <div className="action-card">📖 Resume Last Lesson</div>
           <div className="action-card">🏅 View Achievements</div>
-          <div className="action-card">🌟 Explore New Courses</div>
+          <div 
+            className="action-card" 
+            onClick={() => navigate('/explore', { state: { name, email, selectedLanguages } })}
+            style={{ cursor: 'pointer' }}
+          >
+            🌟 Explore New Courses
+          </div>
         </div>
 
    
@@ -99,7 +139,7 @@ const allCourses = {
           <div className="stat-box"><h2>0 of 20 📘</h2><p>Lessons Completed</p></div>
           <div className="stat-box"><h2>Jul 2025 🗓</h2><p>Learning Since</p></div>
         </div>
-         {/* Courses */}
+         {/* Your Selected Courses */}
         <div className="course-progress">
           <h2>🏆 Your Courses</h2>
           <div className="courses-grid">
@@ -109,46 +149,55 @@ const allCourses = {
                   <h3 className="course-title">{course.title}</h3>
                   <p>{course.completed} of {course.total} lessons completed</p>
                   <button className="continue-btn" onClick={() => openCourse(course.title)}>
-  Start Learning →
-</button>
+                    Start Learning →
+                  </button>
                 </div>
               ))
             ) : (
-              <p>No courses selected. Go to Profile to add your interests.</p>
+              <div className="empty-state-card">
+                <h3>🎯 No courses selected yet</h3>
+                <p>Go to Profile to add your learning interests and start your journey!</p>
+                <button className="continue-btn" onClick={goToProfile}>
+                  Set Up Profile →
+                </button>
+              </div>
             )}
           </div>
         </div>
-{/* Courses Available */}
-<div className="available-courses">
-  <h2>📖 Courses Available</h2>
-  <div className="courses-grid">
-    {Object.keys(allCourses).map((course, index) => {
-      const courseIcons = {
-        Python: "🐍",
-        Java: "☕",
-        "C++": "💻",
-        React: "⚛️",
-        "Node.js": "🌿",
-        HTML: "📄",
-        CSS: "🎨",
-        JavaScript: "📜",
-        Go: "🌀",
-        Rust: "🦀"
-      };
 
-      return (
-        <div className="course-card" key={index}>
-          <div className="course-icon">{courseIcons[course] || "📘"}</div>
-          <h3 className="course-title">{course}</h3>
-          <p>{allCourses[course].total} total lessons</p>
-          <button className="continue-btn" onClick={() => openCourse(course)}>
-  View Course →
-</button>
+        {/* Available Courses */}
+        <div className="available-courses">
+          <h2>📖 All Available Courses</h2>
+          <p className="section-subtitle">Choose from our comprehensive catalog of programming courses</p>
+          <div className="courses-grid">
+            {Object.entries(COMPREHENSIVE_COURSES).slice(0, 8).map(([courseKey, course]) => (
+              <div className="course-card" key={courseKey}>
+                <div className="course-icon">{course.icon}</div>
+                <h3 className="course-title">{course.title}</h3>
+                <p className="course-stats">{course.totalLessons} lessons • {course.estimatedHours}h</p>
+                <p className="course-description">{course.description}</p>
+                <div className="course-levels">
+                  {Object.keys(course.levels || {}).map(level => (
+                    <span key={level} className={`level-badge ${level}`}>
+                      {level.charAt(0).toUpperCase() + level.slice(1)}
+                    </span>
+                  ))}
+                </div>
+                <button className="continue-btn" onClick={() => openCourse(course.title)}>
+                  View Course →
+                </button>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <button 
+              className="explore-all-btn"
+              onClick={() => navigate('/explore', { state: { name, email, selectedLanguages } })}
+            >
+              🚀 Explore All {Object.keys(COMPREHENSIVE_COURSES).length} Courses
+            </button>
+          </div>
         </div>
-      );
-    })}
-  </div>
-</div>
     
         {/* Lessons */}
         <div className="recent-lessons">

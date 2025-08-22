@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Home.css';
 
 const programmingLanguages = [
@@ -8,6 +9,7 @@ const programmingLanguages = [
 
 const Home = () => {
   const navigate = useNavigate();
+  const { login, signup, loading } = useAuth();
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [name, setName] = useState('');
@@ -18,6 +20,7 @@ const Home = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleForm = () => {
     setIsSignUp(prev => !prev);
@@ -33,50 +36,53 @@ const Home = () => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-
-  if (isSignUp && password !== confirmPassword) {
-    alert('Passwords do not match!');
-    return;
-  }
-
-  const formData = {
-    name,
-    email,
-    password,
-    confirmPassword,
-    preferredLanguages: selectedLanguages,
-  };
+  setIsLoading(true);
+  setErrorMsg('');
+  setSuccessMsg('');
 
   try {
-    const response = await fetch(`http://localhost:5000/api/${isSignUp ? 'signup' : 'login'}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
+    if (isSignUp) {
+      // Signup
+      if (password !== confirmPassword) {
+        setErrorMsg('Passwords do not match!');
+        setIsLoading(false);
+        return;
+      }
 
-    const data = await response.json();
+      const result = await signup({
+        name,
+        email,
+        password,
+        confirmPassword,
+        preferredLanguages: selectedLanguages,
+      });
 
-    if (!response.ok) {
-      alert(data.message || 'Something went wrong');
-      return;
+      if (result.success) {
+        setSuccessMsg('Account created successfully! Redirecting...');
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1500);
+      } else {
+        setErrorMsg(result.message);
+      }
+    } else {
+      // Login
+      const result = await login(email, password);
+
+      if (result.success) {
+        setSuccessMsg('Login successful! Redirecting...');
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1500);
+      } else {
+        setErrorMsg(result.message);
+      }
     }
-
-  navigate('/dashboard', {
-  state: {
-    name: isSignUp ? name : data.user.name,
-    email: email,
-    selectedLanguages: isSignUp ? selectedLanguages : data.user.preferredLanguages || [],
-  }
-});
-{(!selectedLanguages || selectedLanguages.length === 0) && (
-  <p>No preferred languages selected. Go to Profile to add some.</p>
-)}
-
-
-
   } catch (error) {
-    console.error(error);
-    alert('Network error');
+    console.error('Authentication error:', error);
+    setErrorMsg('Account not registered. Please create account.');
+  } finally {
+    setIsLoading(false);
   }
 };
 
@@ -178,8 +184,12 @@ const handleSubmit = async (e) => {
                 </div>
               )}
 
-              <button type="submit" className="submit-btn">
-                {isSignUp ? 'Sign Up →' : 'Login →'}
+              <button type="submit" className="submit-btn" disabled={isLoading}>
+                {isLoading ? (
+                  isSignUp ? 'Creating Account...' : 'Logging in...'
+                ) : (
+                  isSignUp ? 'Sign Up →' : 'Login →'
+                )}
               </button>
             </form>
 

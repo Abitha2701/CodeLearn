@@ -165,6 +165,45 @@
 /* Animations */
 @keyframes fadeInUp { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
 
+/* YouTube Links */
+.youtube-links {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  border-left: 4px solid #ff0000;
+}
+
+.youtube-links h4 {
+  margin: 0 0 8px 0;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.youtube-link {
+  display: inline-block;
+  background: #ff0000;
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin: 4px 8px 4px 0;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.youtube-link:hover {
+  background: #cc0000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.module-description {
+  margin: 8px 0 12px 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
 /* Responsive */
 @media (max-width: 640px){
   .row{ flex-wrap:wrap; }

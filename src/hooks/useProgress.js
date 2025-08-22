@@ -1,5 +1,5 @@
 // src/hooks/useProgress.js
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
 const key = (email, courseId) => `progress:${email || 'guest'}:${courseId}`;
 

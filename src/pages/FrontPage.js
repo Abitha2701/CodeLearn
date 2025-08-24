@@ -57,9 +57,14 @@ const navigate = useNavigate();
       {/* Categories */}
       <section className="categories">
         <h2>Top Language Categories</h2>
+        <p className="categories-subtitle">Click on any category to browse course content - no login required</p>
         <div className="category-slider">
           {categories.map((cat, idx) => (
-            <div key={idx} className="category-card animate-pop">
+            <div 
+              key={idx} 
+              className="category-card animate-pop"
+              onClick={() => navigate(`/language/${cat.title.toLowerCase()}`)}
+            >
               <div className="category-icon">{cat.icon}</div>
               <p>{cat.title}</p>
             </div>

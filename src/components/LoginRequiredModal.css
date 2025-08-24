@@ -1,0 +1,93 @@
+.login-required-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.login-required-modal {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: modalPop 0.3s forwards;
+}
+
+@keyframes modalPop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.login-required-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.login-required-modal h2 {
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.login-required-modal p {
+  margin: 0 0 25px 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.login-required-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-button,
+.continue-button {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.login-button {
+  background-color: #5e41da;
+  color: white;
+}
+
+.login-button:hover {
+  background-color: #4c34c2;
+}
+
+.continue-button {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.continue-button:hover {
+  background-color: #e1e1e1;
+}
+
+@media (min-width: 768px) {
+  .login-required-buttons {
+    flex-direction: row;
+  }
+}

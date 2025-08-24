@@ -121,6 +121,7 @@ const ExploreMoreCourses = () => {
               </div>
             ))}
           </div>
+          
         </section>
 
         {filteredCourses.length === 0 && (

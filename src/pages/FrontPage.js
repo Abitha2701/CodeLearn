@@ -77,10 +77,18 @@ const navigate = useNavigate();
         <h2>Most Popular Courses</h2>
         <div className="course-grid">
           {courses.map((course, idx) => (
-            <div key={idx} className="course-card animate-fadeup">
+            <div 
+              key={idx} 
+              className="course-card animate-fadeup"
+              onClick={() => navigate(`/language/${course.title.toLowerCase().replace(/ .*/, '')}`)}
+            >
               <div className="course-icon">{course.icon}</div>
               <h3>{course.title}</h3>
               <p>{course.desc}</p>
+              <div className="course-access-indicator">
+                <div className="access-tag browse-tag">👁️ Browsable</div>
+                <div className="access-tag locked-tag">🔒 Videos Need Login</div>
+              </div>
             </div>
           ))}
         </div>

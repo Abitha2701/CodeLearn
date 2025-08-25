@@ -133,10 +133,47 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  cursor: pointer;
 }
 .course-card:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.course-access-indicator {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  font-size: 0.8rem;
+}
+
+.access-tag {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.browse-tag {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.locked-tag {
+  background-color: #fee2e2;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  animation: subtle-pulse 2s infinite;
+}
+
+@keyframes subtle-pulse {
+  0% { opacity: 0.95; }
+  50% { opacity: 1; }
+  100% { opacity: 0.95; }
 }
 .course-icon {
   font-size: 3rem;

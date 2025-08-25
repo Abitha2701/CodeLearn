@@ -48,6 +48,9 @@ const ExploreMoreCourses = () => {
         <div className="explore-hero">
           <h1>🚀 Explore All Courses</h1>
           <p>Discover new technologies and expand your programming skills with our comprehensive course catalog</p>
+          <div className="access-message">
+            <div className="full-access-message">✅ Full access to all courses and content</div>
+          </div>
         </div>
 
         {/* Search and Filter */}
@@ -81,9 +84,15 @@ const ExploreMoreCourses = () => {
           <h2>🔥 Popular Technologies</h2>
           <div className="categories-grid">
             {TOP_LANGUAGE_CATEGORIES.map((tech, index) => (
-              <div key={index} className="category-card" style={{ borderLeft: `4px solid ${tech.color}` }}>
+              <div 
+                key={index} 
+                className="category-card" 
+                style={{ borderLeft: `4px solid ${tech.color}` }} 
+                onClick={() => navigate(`/course/${tech.name.toLowerCase()}`)}
+              >
                 <div className="category-icon">{tech.icon}</div>
                 <span className="category-name">{tech.name}</span>
+                <div className="direct-access-tag">Start Learning</div>
               </div>
             ))}
           </div>
@@ -104,6 +113,10 @@ const ExploreMoreCourses = () => {
                 <div className="course-stats">
                   <span className="stat">📖 {course.totalLessons} lessons</span>
                   <span className="stat">⏱️ {course.estimatedHours}h</span>
+                </div>
+                <div className="course-premium-badge">
+                  <span className="premium-icon">✨</span>
+                  <span>Full Access</span>
                 </div>
                 <div className="course-levels">
                   {Object.keys(course.levels || {}).map(level => (

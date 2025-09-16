@@ -20,7 +20,8 @@ const CourseDetails = () => {
   };
 
   const startLevel = (levelKey) => {
-    navigate(`/course/${courseId}`, { state: { name, email, startLevel: levelKey } });
+    // Navigate to topic selection page instead of course path
+    navigate(`/course/${courseId}/topics`, { state: { name, email, level: levelKey } });
   };
 
   return (

@@ -2,11 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
+const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('./models/User');
+const { QuizTemplate } = require('./models/Quiz');
 
-dotenv.config();
+// Load environment variables from the correct path
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 const app = express();
 app.use(cors());
@@ -182,4 +186,172 @@ app.get('/api/verify-token', authenticateToken, (req, res) => {
       email: req.user.email 
     } 
   });
+});
+
+// Quiz Routes
+app.get('/api/quiz/templates/:courseId/:levelId/:topicId', async (req, res) => {
+  try {
+    const { courseId, levelId, topicId } = req.params;
+    console.log(`🔍 Quiz request: ${courseId}/${levelId}/${topicId}`);
+    
+    const quiz = await QuizTemplate.findByCourseLevelTopic(courseId, levelId, topicId);
+    
+    if (!quiz) {
+      console.log(`❌ Quiz not found for: ${courseId}/${levelId}/${topicId}`);
+      return res.status(404).json({ 
+        success: false, 
+        message: 'Quiz not available for this topic',
+        requestedPath: `${courseId}/${levelId}/${topicId}`
+      });
+    }
+    
+    console.log(`✅ Quiz found: "${quiz.title}" with ${quiz.questions.length} questions`);
+    res.json({ 
+      success: true, 
+      quiz: quiz.getFormattedQuiz() 
+    });
+  } catch (error) {
+    console.error('❌ Error fetching quiz:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Server error while fetching quiz',
+      error: error.message 
+    });
+  }
+});
+
+// New route for direct topic access (for TopicSelection component)
+app.get('/api/quizzes/topic/:courseId/:topicId', async (req, res) => {
+  try {
+    const { courseId, topicId } = req.params;
+    console.log(`🔍 Direct topic quiz request: ${courseId}/${topicId}`);
+    
+    // Load quiz data directly from JSON file
+    const quizDataPath = path.join(__dirname, 'comprehensive_quiz_data.json');
+    
+    if (!fs.existsSync(quizDataPath)) {
+      console.log(`❌ Quiz data file not found: ${quizDataPath}`);
+      return res.status(404).json({ 
+        success: false, 
+        message: 'Quiz data file not found'
+      });
+    }
+    
+    const quizData = JSON.parse(fs.readFileSync(quizDataPath, 'utf8'));
+    
+    // Search for the topic across all levels
+    let foundQuiz = null;
+    let foundLevel = null;
+    
+    if (quizData[courseId]) {
+      // Check all levels (beginner, intermediate, advanced)
+      for (const [levelKey, levelData] of Object.entries(quizData[courseId])) {
+        if (levelData[topicId]) {
+          foundQuiz = levelData[topicId];
+          foundLevel = levelKey;
+          break;
+        }
+      }
+    }
+    
+    if (!foundQuiz) {
+      console.log(`❌ Quiz not found for topic: ${courseId}/${topicId}`);
+      console.log(`Available topics in ${courseId}:`, Object.keys(quizData[courseId] || {}));
+      return res.status(404).json({ 
+        success: false, 
+        message: 'Quiz not available for this topic',
+        requestedTopic: topicId
+      });
+    }
+    
+    console.log(`✅ Topic quiz found: "${foundQuiz.topic}" with ${foundQuiz.questions.length} questions`);
+    res.json({ 
+      success: true, 
+      questions: foundQuiz.questions,
+      title: `${foundQuiz.topic} Quiz`,
+      topic: foundQuiz.topic,
+      level: foundLevel,
+      course: foundQuiz.course
+    });
+  } catch (error) {
+    console.error('❌ Error fetching topic quiz:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Server error while fetching quiz',
+      error: error.message 
+    });
+  }
+});
+
+// Check Answer Route
+app.post('/api/quiz/check-answer', async (req, res) => {
+  try {
+    const { quizId, questionIndex, answerIndex } = req.body;
+    
+    const quiz = await QuizTemplate.findById(quizId);
+    if (!quiz) {
+      return res.status(404).json({ 
+        success: false, 
+        message: 'Quiz not found' 
+      });
+    }
+    
+    const result = quiz.checkAnswer(questionIndex, answerIndex);
+    res.json({ 
+      success: true, 
+      ...result 
+    });
+  } catch (error) {
+    console.error('❌ Error checking answer:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Server error while checking answer',
+      error: error.message 
+    });
+  }
+});
+
+// Get Quiz Statistics
+app.get('/api/quiz/stats', async (req, res) => {
+  try {
+    const stats = await QuizTemplate.getQuizStats();
+    res.json({ 
+      success: true, 
+      stats 
+    });
+  } catch (error) {
+    console.error('❌ Error fetching quiz stats:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Server error while fetching quiz statistics',
+      error: error.message 
+    });
+  }
+});
+
+// Get All Quizzes for a Course and Level
+app.get('/api/quiz/course/:courseId/level/:levelId', async (req, res) => {
+  try {
+    const { courseId, levelId } = req.params;
+    
+    const quizzes = await QuizTemplate.findByCourseAndLevel(courseId, levelId);
+    res.json({ 
+      success: true, 
+      quizzes: quizzes.map(quiz => ({
+        topic_id: quiz.topic_id,
+        title: quiz.title,
+        description: quiz.description,
+        estimated_time: quiz.estimated_time,
+        difficulty_level: quiz.difficulty_level,
+        total_questions: quiz.questions.length
+      }))
+    });
+  } catch (error) {
+    console.error('❌ Error fetching course quizzes:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Server error while fetching course quizzes',
+      error: error.message 
+    });
+  }
 });

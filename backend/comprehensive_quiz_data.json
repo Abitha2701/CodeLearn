@@ -1,0 +1,879 @@
+{
+  "python": {
+    "beginner": {
+      "introduction-to-python": {
+        "course": "Python",
+        "level": "Beginner", 
+        "topic": "Introduction to Python",
+        "questions": [
+          {
+            "question": "What is Python?",
+            "options": ["A snake", "A high-level programming language", "A web browser", "A database"],
+            "answer": "A high-level programming language"
+          },
+          {
+            "question": "Who created Python?",
+            "options": ["Guido van Rossum", "James Gosling", "Brendan Eich", "Dennis Ritchie"],
+            "answer": "Guido van Rossum"
+          },
+          {
+            "question": "What is the file extension for Python files?",
+            "options": [".txt", ".py", ".java", ".html"],
+            "answer": ".py"
+          },
+          {
+            "question": "Python is an interpreted language. What does this mean?",
+            "options": ["Code is compiled before execution", "Code is executed line by line", "Code runs faster", "Code cannot be debugged"],
+            "answer": "Code is executed line by line"
+          },
+          {
+            "question": "Which of the following is a Python IDE?",
+            "options": ["PyCharm", "Notepad", "Calculator", "Paint"],
+            "answer": "PyCharm"
+          },
+          {
+            "question": "What does PEP stand for in Python?",
+            "options": ["Python Enhancement Proposal", "Python Execution Protocol", "Python Error Prevention", "Python Extension Package"],
+            "answer": "Python Enhancement Proposal"
+          },
+          {
+            "question": "Which Python version is recommended for new projects?",
+            "options": ["Python 2.7", "Python 3.x", "Python 1.0", "Any version"],
+            "answer": "Python 3.x"
+          },
+          {
+            "question": "How do you start the Python interactive interpreter?",
+            "options": ["python", "py", "python3", "All of the above"],
+            "answer": "All of the above"
+          }
+        ]
+      },
+      "variables-and-data-types": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "Variables and Data Types",
+        "questions": [
+          {
+            "question": "How do you declare a variable in Python?",
+            "options": ["var x = 5", "int x = 5", "x = 5", "declare x = 5"],
+            "answer": "x = 5"
+          },
+          {
+            "question": "What is the data type of x = 'Hello'?",
+            "options": ["int", "float", "str", "bool"],
+            "answer": "str"
+          },
+          {
+            "question": "What function returns the data type of a variable?",
+            "options": ["typeof()", "type()", "datatype()", "gettype()"],
+            "answer": "type()"
+          },
+          {
+            "question": "Which of these is a mutable data type in Python?",
+            "options": ["tuple", "string", "list", "int"],
+            "answer": "list"
+          },
+          {
+            "question": "What will be the output of: print(type(3.14))?",
+            "options": ["<class 'int'>", "<class 'float'>", "<class 'str'>", "<class 'bool'>"],
+            "answer": "<class 'float'>"
+          },
+          {
+            "question": "Which is the correct way to assign multiple variables?",
+            "options": ["a, b, c = 1, 2, 3", "a = b = c = 1", "a = 1; b = 2; c = 3", "All of the above"],
+            "answer": "All of the above"
+          },
+          {
+            "question": "What is the result of bool('')?",
+            "options": ["True", "False", "Error", "None"],
+            "answer": "False"
+          },
+          {
+            "question": "Which of these is NOT a valid variable name?",
+            "options": ["_var", "var1", "1var", "var_"],
+            "answer": "1var"
+          }
+        ]
+      },
+      "operators-arithmetic-logical-bitwise": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "Operators (arithmetic, logical, bitwise)",
+        "questions": [
+          {
+            "question": "What is the result of 5 // 2 in Python?",
+            "options": ["2.5", "2", "3", "2.0"],
+            "answer": "2"
+          },
+          {
+            "question": "What does the ** operator do?",
+            "options": ["Multiplication", "Exponentiation", "Division", "Modulus"],
+            "answer": "Exponentiation"
+          },
+          {
+            "question": "What is the result of 10 % 3?",
+            "options": ["3", "1", "3.33", "0"],
+            "answer": "1"
+          },
+          {
+            "question": "Which operator is used for logical AND?",
+            "options": ["&&", "&", "and", "AND"],
+            "answer": "and"
+          },
+          {
+            "question": "What is the result of not True?",
+            "options": ["True", "False", "1", "0"],
+            "answer": "False"
+          },
+          {
+            "question": "What does the & operator do with integers?",
+            "options": ["Logical AND", "Bitwise AND", "Addition", "Multiplication"],
+            "answer": "Bitwise AND"
+          },
+          {
+            "question": "What is the result of 5 & 3 (bitwise AND)?",
+            "options": ["1", "3", "5", "8"],
+            "answer": "1"
+          },
+          {
+            "question": "Which comparison operator checks for inequality?",
+            "options": ["!=", "<>", "not equal", "ne"],
+            "answer": "!="
+          }
+        ]
+      },
+      "control-flow-if-else-loops": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "Control Flow (if-else, loops)",
+        "questions": [
+          {
+            "question": "Which keyword is used for conditional statements in Python?",
+            "options": ["if", "condition", "when", "check"],
+            "answer": "if"
+          },
+          {
+            "question": "What is the correct syntax for an if-else statement?",
+            "options": ["if condition: ... else: ...", "if (condition) { ... } else { ... }", "if condition then ... else ...", "if condition do ... else do ..."],
+            "answer": "if condition: ... else: ..."
+          },
+          {
+            "question": "Which loop is used to iterate a specific number of times?",
+            "options": ["while", "for", "do-while", "repeat"],
+            "answer": "for"
+          },
+          {
+            "question": "What does the range(5) function return?",
+            "options": ["[1, 2, 3, 4, 5]", "[0, 1, 2, 3, 4]", "5", "[0, 1, 2, 3, 4, 5]"],
+            "answer": "[0, 1, 2, 3, 4]"
+          },
+          {
+            "question": "Which keyword is used to exit a loop prematurely?",
+            "options": ["exit", "break", "stop", "end"],
+            "answer": "break"
+          },
+          {
+            "question": "Which keyword skips the current iteration of a loop?",
+            "options": ["skip", "continue", "next", "pass"],
+            "answer": "continue"
+          },
+          {
+            "question": "What is the purpose of the 'pass' statement?",
+            "options": ["Exit the program", "Skip iteration", "Do nothing (placeholder)", "Return a value"],
+            "answer": "Do nothing (placeholder)"
+          },
+          {
+            "question": "What is the correct syntax for a while loop?",
+            "options": ["while condition:", "while (condition)", "while condition do:", "while condition then:"],
+            "answer": "while condition:"
+          }
+        ]
+      },
+      "functions-and-scope": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "Functions and Scope",
+        "questions": [
+          {
+            "question": "Which keyword is used to define a function in Python?",
+            "options": ["function", "def", "func", "define"],
+            "answer": "def"
+          },
+          {
+            "question": "How do you call a function named 'greet'?",
+            "options": ["call greet()", "greet()", "function greet()", "run greet()"],
+            "answer": "greet()"
+          },
+          {
+            "question": "Which keyword is used to return a value from a function?",
+            "options": ["return", "give", "output", "result"],
+            "answer": "return"
+          },
+          {
+            "question": "What happens if a function doesn't have a return statement?",
+            "options": ["Error occurs", "Returns None", "Returns 0", "Returns empty string"],
+            "answer": "Returns None"
+          },
+          {
+            "question": "What is a local variable?",
+            "options": ["Variable defined inside a function", "Variable defined outside all functions", "Variable that can be accessed anywhere", "Variable with no value"],
+            "answer": "Variable defined inside a function"
+          },
+          {
+            "question": "What is a global variable?",
+            "options": ["Variable defined inside a function", "Variable defined outside all functions", "Variable that cannot be changed", "Variable with a default value"],
+            "answer": "Variable defined outside all functions"
+          },
+          {
+            "question": "How do you access a global variable inside a function?",
+            "options": ["Use global keyword", "Just use the variable name", "Import the variable", "Use extern keyword"],
+            "answer": "Use global keyword"
+          },
+          {
+            "question": "What are function parameters?",
+            "options": ["Values returned by function", "Variables that receive values when function is called", "Global variables", "Local variables only"],
+            "answer": "Variables that receive values when function is called"
+          }
+        ]
+      },
+      "lists-and-tuples": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "Lists and Tuples",
+        "questions": [
+          {
+            "question": "How do you create an empty list in Python?",
+            "options": ["list = {}", "list = []", "list = ()", "list = <>"],
+            "answer": "list = []"
+          },
+          {
+            "question": "Which method adds an element to the end of a list?",
+            "options": ["add()", "append()", "insert()", "push()"],
+            "answer": "append()"
+          },
+          {
+            "question": "What is the difference between lists and tuples?",
+            "options": ["No difference", "Lists are mutable, tuples are immutable", "Tuples are mutable, lists are immutable", "Lists use [], tuples use {}"],
+            "answer": "Lists are mutable, tuples are immutable"
+          },
+          {
+            "question": "How do you access the first element of a list named 'my_list'?",
+            "options": ["my_list[1]", "my_list[0]", "my_list.first()", "my_list.get(0)"],
+            "answer": "my_list[0]"
+          },
+          {
+            "question": "What does list slicing my_list[1:3] return?",
+            "options": ["Elements at index 1 and 3", "Elements at index 1 and 2", "Elements at index 0, 1, and 2", "Elements at index 2 and 3"],
+            "answer": "Elements at index 1 and 2"
+          },
+          {
+            "question": "How do you create a tuple with one element?",
+            "options": ["(5)", "(5,)", "[5]", "{5}"],
+            "answer": "(5,)"
+          },
+          {
+            "question": "Which method removes the last element from a list?",
+            "options": ["remove()", "delete()", "pop()", "clear()"],
+            "answer": "pop()"
+          },
+          {
+            "question": "How do you find the length of a list?",
+            "options": ["list.length()", "len(list)", "list.size()", "list.count()"],
+            "answer": "len(list)"
+          }
+        ]
+      },
+      "dictionaries-and-sets": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "Dictionaries and Sets",
+        "questions": [
+          {
+            "question": "How do you create an empty dictionary?",
+            "options": ["{}", "[]", "()", "dict()"],
+            "answer": "{}"
+          },
+          {
+            "question": "How do you access a value in a dictionary?",
+            "options": ["dict[key]", "dict.get(key)", "Both dict[key] and dict.get(key)", "dict->key"],
+            "answer": "Both dict[key] and dict.get(key)"
+          },
+          {
+            "question": "What happens when you try to access a non-existent key with dict[key]?",
+            "options": ["Returns None", "Returns empty string", "Raises KeyError", "Returns 0"],
+            "answer": "Raises KeyError"
+          },
+          {
+            "question": "How do you add a new key-value pair to a dictionary?",
+            "options": ["dict.add(key, value)", "dict[key] = value", "dict.insert(key, value)", "dict.append(key, value)"],
+            "answer": "dict[key] = value"
+          },
+          {
+            "question": "What is a set in Python?",
+            "options": ["Ordered collection of unique elements", "Unordered collection of unique elements", "Ordered collection that allows duplicates", "Unordered collection that allows duplicates"],
+            "answer": "Unordered collection of unique elements"
+          },
+          {
+            "question": "How do you create a set?",
+            "options": ["{1, 2, 3}", "set([1, 2, 3])", "Both {1, 2, 3} and set([1, 2, 3])", "[1, 2, 3]"],
+            "answer": "Both {1, 2, 3} and set([1, 2, 3])"
+          },
+          {
+            "question": "Which method returns all keys in a dictionary?",
+            "options": ["dict.keys()", "dict.getkeys()", "dict.allkeys()", "dict.keylist()"],
+            "answer": "dict.keys()"
+          },
+          {
+            "question": "How do you remove an element from a set?",
+            "options": ["set.remove(element)", "set.discard(element)", "Both remove() and discard()", "del set[element]"],
+            "answer": "Both remove() and discard()"
+          }
+        ]
+      },
+      "string-manipulation": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "String Manipulation",
+        "questions": [
+          {
+            "question": "How do you create a string in Python?",
+            "options": ["Using single quotes only", "Using double quotes only", "Using single or double quotes", "Using backticks"],
+            "answer": "Using single or double quotes"
+          },
+          {
+            "question": "What does the len() function return for a string?",
+            "options": ["Number of words", "Number of characters", "Number of lines", "Number of bytes"],
+            "answer": "Number of characters"
+          },
+          {
+            "question": "How do you convert a string to uppercase?",
+            "options": ["str.upper()", "str.toUpper()", "str.uppercase()", "str.UPPER()"],
+            "answer": "str.upper()"
+          },
+          {
+            "question": "What does str.split() do?",
+            "options": ["Joins strings", "Splits string into a list", "Removes spaces", "Converts to lowercase"],
+            "answer": "Splits string into a list"
+          },
+          {
+            "question": "How do you concatenate two strings?",
+            "options": ["str1 + str2", "str1.concat(str2)", "join(str1, str2)", "str1 & str2"],
+            "answer": "str1 + str2"
+          },
+          {
+            "question": "What is string formatting with f-strings?",
+            "options": ["f'Hello {name}'", "format('Hello {name}')", "'Hello' + name", "str('Hello {name}')"],
+            "answer": "f'Hello {name}'"
+          },
+          {
+            "question": "How do you check if a substring exists in a string?",
+            "options": ["substring in string", "string.contains(substring)", "string.has(substring)", "string.find(substring)"],
+            "answer": "substring in string"
+          },
+          {
+            "question": "What does str.strip() do?",
+            "options": ["Removes all characters", "Removes leading and trailing whitespace", "Removes all whitespace", "Converts to lowercase"],
+            "answer": "Removes leading and trailing whitespace"
+          }
+        ]
+      },
+      "file-io-operations": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "File I/O Operations",
+        "questions": [
+          {
+            "question": "How do you open a file for reading in Python?",
+            "options": ["open('file.txt', 'r')", "read('file.txt')", "file('file.txt')", "load('file.txt')"],
+            "answer": "open('file.txt', 'r')"
+          },
+          {
+            "question": "Which mode is used to open a file for writing?",
+            "options": ["'r'", "'w'", "'a'", "'x'"],
+            "answer": "'w'"
+          },
+          {
+            "question": "What happens when you open a file in 'w' mode?",
+            "options": ["Appends to existing content", "Creates new file or overwrites existing", "Reads the file", "Creates backup"],
+            "answer": "Creates new file or overwrites existing"
+          },
+          {
+            "question": "How do you read the entire content of a file?",
+            "options": ["file.read()", "file.readall()", "file.content()", "file.get()"],
+            "answer": "file.read()"
+          },
+          {
+            "question": "What is the recommended way to work with files?",
+            "options": ["Always use open() and close()", "Use with statement", "Use try-except only", "Use global file objects"],
+            "answer": "Use with statement"
+          },
+          {
+            "question": "How do you read a file line by line?",
+            "options": ["file.readlines()", "for line in file", "file.readline() in loop", "All of the above"],
+            "answer": "All of the above"
+          },
+          {
+            "question": "What does the 'a' mode do when opening a file?",
+            "options": ["Opens for reading", "Opens for writing (overwrites)", "Opens for appending", "Opens in binary mode"],
+            "answer": "Opens for appending"
+          },
+          {
+            "question": "How do you write to a file?",
+            "options": ["file.write(text)", "file.append(text)", "file.insert(text)", "file.add(text)"],
+            "answer": "file.write(text)"
+          }
+        ]
+      },
+      "error-handling-basics": {
+        "course": "Python",
+        "level": "Beginner",
+        "topic": "Error Handling Basics",
+        "questions": [
+          {
+            "question": "Which keyword is used to handle exceptions in Python?",
+            "options": ["catch", "try", "handle", "exception"],
+            "answer": "try"
+          },
+          {
+            "question": "What keyword is used with 'try' to catch exceptions?",
+            "options": ["catch", "except", "handle", "error"],
+            "answer": "except"
+          },
+          {
+            "question": "What is the purpose of the 'finally' block?",
+            "options": ["Handle exceptions", "Execute code regardless of exceptions", "Ignore exceptions", "Re-raise exceptions"],
+            "answer": "Execute code regardless of exceptions"
+          },
+          {
+            "question": "How do you raise a custom exception?",
+            "options": ["throw Exception()", "raise Exception()", "error Exception()", "exception Exception()"],
+            "answer": "raise Exception()"
+          },
+          {
+            "question": "What type of error occurs when dividing by zero?",
+            "options": ["ValueError", "TypeError", "ZeroDivisionError", "ArithmeticError"],
+            "answer": "ZeroDivisionError"
+          },
+          {
+            "question": "What happens when an exception is not caught?",
+            "options": ["Program continues", "Program terminates with error", "Exception is ignored", "Default value is returned"],
+            "answer": "Program terminates with error"
+          },
+          {
+            "question": "How do you catch multiple specific exceptions?",
+            "options": ["except Exception1, Exception2:", "except (Exception1, Exception2):", "except Exception1 or Exception2:", "except Exception1 and Exception2:"],
+            "answer": "except (Exception1, Exception2):"
+          },
+          {
+            "question": "What does 'else' do in a try-except block?",
+            "options": ["Executes if exception occurs", "Executes if no exception occurs", "Always executes", "Never executes"],
+            "answer": "Executes if no exception occurs"
+          }
+        ]
+      }
+    },
+    "intermediate": {
+      "object-oriented-programming": {
+        "course": "Python",
+        "level": "Intermediate",
+        "topic": "Object-Oriented Programming",
+        "questions": [
+          {
+            "question": "What are the four main principles of OOP?",
+            "options": ["Encapsulation, Inheritance, Polymorphism, Abstraction", "Classes, Objects, Methods, Variables", "Functions, Loops, Conditions, Variables", "Import, Export, Define, Call"],
+            "answer": "Encapsulation, Inheritance, Polymorphism, Abstraction"
+          },
+          {
+            "question": "What is encapsulation in OOP?",
+            "options": ["Creating multiple objects", "Hiding internal implementation details", "Inheriting from parent class", "Using multiple methods"],
+            "answer": "Hiding internal implementation details"
+          },
+          {
+            "question": "What is inheritance in OOP?",
+            "options": ["Creating new objects", "One class acquiring properties of another", "Hiding data", "Overloading methods"],
+            "answer": "One class acquiring properties of another"
+          },
+          {
+            "question": "What is polymorphism?",
+            "options": ["Having multiple forms", "Creating multiple classes", "Using multiple variables", "Importing multiple modules"],
+            "answer": "Having multiple forms"
+          },
+          {
+            "question": "What is abstraction in OOP?",
+            "options": ["Showing all details", "Hiding unnecessary details and showing essential features", "Creating concrete classes", "Using only functions"],
+            "answer": "Hiding unnecessary details and showing essential features"
+          },
+          {
+            "question": "What is the difference between a class and an object?",
+            "options": ["No difference", "Class is a blueprint, object is an instance", "Object is a blueprint, class is an instance", "Both are the same thing"],
+            "answer": "Class is a blueprint, object is an instance"
+          },
+          {
+            "question": "What is method overriding?",
+            "options": ["Creating new methods", "Redefining parent class method in child class", "Using multiple methods with same name", "Deleting methods"],
+            "answer": "Redefining parent class method in child class"
+          },
+          {
+            "question": "What is the purpose of the super() function?",
+            "options": ["Create superclass", "Access parent class methods and properties", "Make class superior", "Delete parent class"],
+            "answer": "Access parent class methods and properties"
+          },
+          {
+            "question": "What is multiple inheritance?",
+            "options": ["Class inheriting from multiple parent classes", "Multiple objects from one class", "Multiple methods in one class", "Multiple variables in one object"],
+            "answer": "Class inheriting from multiple parent classes"
+          },
+          {
+            "question": "What is composition in OOP?",
+            "options": ["Writing code", "A class containing objects of other classes", "Inheriting from multiple classes", "Creating abstract classes"],
+            "answer": "A class containing objects of other classes"
+          }
+        ]
+      },
+      "classes-and-objects": {
+        "course": "Python",
+        "level": "Intermediate",
+        "topic": "Classes and Objects",
+        "questions": [
+          {
+            "question": "How do you define a class in Python?",
+            "options": ["class ClassName:", "def ClassName:", "create ClassName:", "new ClassName:"],
+            "answer": "class ClassName:"
+          },
+          {
+            "question": "What is the __init__ method?",
+            "options": ["Destructor", "Constructor", "Static method", "Class method"],
+            "answer": "Constructor"
+          },
+          {
+            "question": "What is the first parameter of every instance method?",
+            "options": ["this", "self", "object", "instance"],
+            "answer": "self"
+          },
+          {
+            "question": "How do you create an object of a class?",
+            "options": ["new ClassName()", "ClassName()", "create ClassName()", "object ClassName()"],
+            "answer": "ClassName()"
+          },
+          {
+            "question": "What are instance variables?",
+            "options": ["Variables shared by all instances", "Variables unique to each instance", "Variables that cannot change", "Variables without values"],
+            "answer": "Variables unique to each instance"
+          },
+          {
+            "question": "What are class variables?",
+            "options": ["Variables unique to each instance", "Variables shared by all instances", "Variables that cannot change", "Variables inside methods"],
+            "answer": "Variables shared by all instances"
+          },
+          {
+            "question": "How do you access an instance variable?",
+            "options": ["ClassName.variable", "self.variable", "object.variable", "Both self.variable and object.variable"],
+            "answer": "Both self.variable and object.variable"
+          },
+          {
+            "question": "What is a method in a class?",
+            "options": ["A variable", "A function defined inside the class", "A class property", "An object attribute"],
+            "answer": "A function defined inside the class"
+          },
+          {
+            "question": "How do you define a private attribute in Python?",
+            "options": ["private variable", "_variable", "__variable", "var _variable"],
+            "answer": "__variable"
+          },
+          {
+            "question": "What happens when you call str() on an object?",
+            "options": ["Calls __str__ method", "Calls __init__ method", "Calls __repr__ method", "Returns object type"],
+            "answer": "Calls __str__ method"
+          }
+        ]
+      },
+      "inheritance-and-polymorphism": {
+        "course": "Python",
+        "level": "Intermediate",
+        "topic": "Inheritance and Polymorphism",
+        "questions": [
+          {
+            "question": "How do you create a child class that inherits from a parent class?",
+            "options": ["class Child(Parent):", "class Child extends Parent:", "class Child inherits Parent:", "class Child -> Parent:"],
+            "answer": "class Child(Parent):"
+          },
+          {
+            "question": "What is method resolution order (MRO)?",
+            "options": ["Order of method execution", "Order in which Python searches for methods in inheritance hierarchy", "Order of method definition", "Order of object creation"],
+            "answer": "Order in which Python searches for methods in inheritance hierarchy"
+          },
+          {
+            "question": "How do you call a parent class method from child class?",
+            "options": ["parent.method()", "super().method()", "Parent.method()", "base.method()"],
+            "answer": "super().method()"
+          },
+          {
+            "question": "What is duck typing in Python?",
+            "options": ["Type checking for ducks", "If it walks like a duck and quacks like a duck, it's a duck", "Strong typing system", "Static type checking"],
+            "answer": "If it walks like a duck and quacks like a duck, it's a duck"
+          },
+          {
+            "question": "What allows the same interface to be used for different data types?",
+            "options": ["Inheritance", "Encapsulation", "Polymorphism", "Abstraction"],
+            "answer": "Polymorphism"
+          },
+          {
+            "question": "What is operator overloading?",
+            "options": ["Using too many operators", "Defining how operators work with custom objects", "Creating new operators", "Deleting operators"],
+            "answer": "Defining how operators work with custom objects"
+          },
+          {
+            "question": "Which method do you override to define addition for custom objects?",
+            "options": ["__add__", "__plus__", "__addition__", "__sum__"],
+            "answer": "__add__"
+          },
+          {
+            "question": "What is the isinstance() function used for?",
+            "options": ["Create instances", "Check if object is instance of class", "Delete instances", "Count instances"],
+            "answer": "Check if object is instance of class"
+          },
+          {
+            "question": "What is the difference between is and == operators?",
+            "options": ["No difference", "is checks identity, == checks equality", "== checks identity, is checks equality", "Both check identity"],
+            "answer": "is checks identity, == checks equality"
+          },
+          {
+            "question": "What is method overloading in Python?",
+            "options": ["Python doesn't support traditional method overloading", "Defining multiple methods with same name", "Overriding parent methods", "Loading methods dynamically"],
+            "answer": "Python doesn't support traditional method overloading"
+          }
+        ]
+      },
+      "modules-and-packages": {
+        "course": "Python",
+        "level": "Intermediate",
+        "topic": "Modules and Packages",
+        "questions": [
+          {
+            "question": "How do you import a module in Python?",
+            "options": ["include module", "import module", "require module", "load module"],
+            "answer": "import module"
+          },
+          {
+            "question": "How do you import a specific function from a module?",
+            "options": ["import function from module", "from module import function", "import module.function", "get function from module"],
+            "answer": "from module import function"
+          },
+          {
+            "question": "What is the purpose of __init__.py file?",
+            "options": ["Initialize variables", "Mark directory as Python package", "Start the program", "Import all modules"],
+            "answer": "Mark directory as Python package"
+          },
+          {
+            "question": "How do you create an alias for a module?",
+            "options": ["import module alias name", "import module as name", "import module -> name", "alias module as name"],
+            "answer": "import module as name"
+          },
+          {
+            "question": "What does the __name__ variable contain?",
+            "options": ["Module file name", "Module name or '__main__' if run directly", "Function name", "Class name"],
+            "answer": "Module name or '__main__' if run directly"
+          },
+          {
+            "question": "How do you check what's available in a module?",
+            "options": ["dir(module)", "list(module)", "help(module)", "info(module)"],
+            "answer": "dir(module)"
+          },
+          {
+            "question": "What is the difference between a module and a package?",
+            "options": ["No difference", "Module is a file, package is a directory with modules", "Package is a file, module is a directory", "Both are the same"],
+            "answer": "Module is a file, package is a directory with modules"
+          },
+          {
+            "question": "How do you import all functions from a module?",
+            "options": ["import module.*", "from module import *", "import all from module", "module import all"],
+            "answer": "from module import *"
+          },
+          {
+            "question": "What is the sys.path?",
+            "options": ["System file path", "List of directories Python searches for modules", "Current working directory", "Python installation path"],
+            "answer": "List of directories Python searches for modules"
+          },
+          {
+            "question": "How do you reload a module in Python?",
+            "options": ["reload(module)", "importlib.reload(module)", "module.reload()", "import module again"],
+            "answer": "importlib.reload(module)"
+          }
+        ]
+      },
+      "decorators": {
+        "course": "Python",
+        "level": "Intermediate",
+        "topic": "Decorators",
+        "questions": [
+          {
+            "question": "What is a decorator in Python?",
+            "options": ["A design pattern", "A function that modifies another function", "A class method", "A module import"],
+            "answer": "A function that modifies another function"
+          },
+          {
+            "question": "How do you apply a decorator to a function?",
+            "options": ["@decorator above function definition", "decorator(function)", "function.decorator()", "apply decorator to function"],
+            "answer": "@decorator above function definition"
+          },
+          {
+            "question": "What does the @property decorator do?",
+            "options": ["Creates a property", "Makes method accessible like an attribute", "Creates private variable", "Defines class property"],
+            "answer": "Makes method accessible like an attribute"
+          },
+          {
+            "question": "What is functools.wraps used for?",
+            "options": ["Wrap functions", "Preserve original function metadata in decorators", "Create wrapper classes", "Handle exceptions"],
+            "answer": "Preserve original function metadata in decorators"
+          },
+          {
+            "question": "How do you create a decorator that accepts arguments?",
+            "options": ["Use nested functions", "Use lambda functions", "Use class methods", "Use global variables"],
+            "answer": "Use nested functions"
+          },
+          {
+            "question": "What is the @staticmethod decorator?",
+            "options": ["Makes method static", "Creates method that doesn't need self parameter", "Makes method unchangeable", "Creates class method"],
+            "answer": "Creates method that doesn't need self parameter"
+          },
+          {
+            "question": "What is the @classmethod decorator?",
+            "options": ["Creates class method that receives cls as first parameter", "Makes method specific to class", "Creates static method", "Makes method private"],
+            "answer": "Creates class method that receives cls as first parameter"
+          },
+          {
+            "question": "Can you apply multiple decorators to a single function?",
+            "options": ["No, only one decorator per function", "Yes, they are applied bottom to top", "Yes, they are applied top to bottom", "Yes, they are applied randomly"],
+            "answer": "Yes, they are applied bottom to top"
+          },
+          {
+            "question": "What is a common use case for decorators?",
+            "options": ["Logging, timing, authentication", "Variable declaration", "Loop iteration", "File handling"],
+            "answer": "Logging, timing, authentication"
+          },
+          {
+            "question": "How do decorators work internally?",
+            "options": ["They modify the function code", "They return a new function that wraps the original", "They change function parameters", "They create new classes"],
+            "answer": "They return a new function that wraps the original"
+          }
+        ]
+      }
+    },
+    "advanced": {
+      "advanced-oop-concepts": {
+        "course": "Python",
+        "level": "Advanced",
+        "topic": "Advanced OOP Concepts",
+        "questions": [
+          {
+            "question": "What is the Method Resolution Order (MRO) algorithm used in Python?",
+            "options": ["Depth-First Search", "Breadth-First Search", "C3 Linearization", "Random Order"],
+            "answer": "C3 Linearization"
+          },
+          {
+            "question": "What are abstract base classes (ABC)?",
+            "options": ["Classes that cannot be instantiated and may contain abstract methods", "Classes with only class methods", "Classes imported from abc module", "Classes without __init__ method"],
+            "answer": "Classes that cannot be instantiated and may contain abstract methods"
+          },
+          {
+            "question": "What is the purpose of __slots__?",
+            "options": ["Create slots for data", "Restrict instance attributes and save memory", "Define method slots", "Create time slots"],
+            "answer": "Restrict instance attributes and save memory"
+          },
+          {
+            "question": "What does the @abstractmethod decorator do?",
+            "options": ["Makes method private", "Forces subclasses to implement the method", "Makes method static", "Makes method abstract only"],
+            "answer": "Forces subclasses to implement the method"
+          },
+          {
+            "question": "What is descriptor protocol in Python?",
+            "options": ["Network protocol", "Way to customize attribute access using __get__, __set__, __delete__", "File format protocol", "Database protocol"],
+            "answer": "Way to customize attribute access using __get__, __set__, __delete__"
+          },
+          {
+            "question": "What is the difference between __new__ and __init__?",
+            "options": ["No difference", "__new__ creates instance, __init__ initializes it", "__init__ creates instance, __new__ initializes it", "Both do the same thing"],
+            "answer": "__new__ creates instance, __init__ initializes it"
+          },
+          {
+            "question": "What are mixins in Python?",
+            "options": ["Classes designed to provide specific functionality to other classes via multiple inheritance", "Mixed data types", "Function combinations", "Module mixtures"],
+            "answer": "Classes designed to provide specific functionality to other classes via multiple inheritance"
+          },
+          {
+            "question": "What is the purpose of __call__ method?",
+            "options": ["Call other methods", "Make objects callable like functions", "Call parent class", "Call static methods"],
+            "answer": "Make objects callable like functions"
+          },
+          {
+            "question": "What is monkey patching?",
+            "options": ["Patching software bugs", "Dynamically modifying classes or modules at runtime", "Animal-related programming", "Security patching"],
+            "answer": "Dynamically modifying classes or modules at runtime"
+          },
+          {
+            "question": "What are data classes in Python 3.7+?",
+            "options": ["Classes for data science", "Classes that automatically generate special methods like __init__, __repr__", "Database classes", "Classes with only data"],
+            "answer": "Classes that automatically generate special methods like __init__, __repr__"
+          }
+        ]
+      },
+      "metaclasses": {
+        "course": "Python",
+        "level": "Advanced",
+        "topic": "Metaclasses",
+        "questions": [
+          {
+            "question": "What is a metaclass in Python?",
+            "options": ["A class of classes", "A class that defines how classes are created", "A parent class", "A module class"],
+            "answer": "A class that defines how classes are created"
+          },
+          {
+            "question": "What is the default metaclass in Python?",
+            "options": ["object", "type", "class", "meta"],
+            "answer": "type"
+          },
+          {
+            "question": "How do you specify a custom metaclass for a class?",
+            "options": ["class MyClass(metaclass=MyMeta):", "class MyClass(MyMeta):", "class MyClass meta MyMeta:", "class MyClass -> MyMeta:"],
+            "answer": "class MyClass(metaclass=MyMeta):"
+          },
+          {
+            "question": "What method is called when a metaclass creates a new class?",
+            "options": ["__init__", "__new__", "__create__", "__make__"],
+            "answer": "__new__"
+          },
+          {
+            "question": "What is the relationship between classes and their metaclass?",
+            "options": ["Classes inherit from metaclass", "Classes are instances of metaclass", "Metaclass inherits from classes", "No relationship"],
+            "answer": "Classes are instances of metaclass"
+          },
+          {
+            "question": "What can you do with metaclasses?",
+            "options": ["Control class creation", "Modify class attributes", "Add methods to classes", "All of the above"],
+            "answer": "All of the above"
+          },
+          {
+            "question": "What is the type() function used for besides checking types?",
+            "options": ["Converting types", "Creating classes dynamically", "Deleting types", "Comparing types"],
+            "answer": "Creating classes dynamically"
+          },
+          {
+            "question": "What parameters does __new__ receive in a metaclass?",
+            "options": ["cls, name, bases, attrs", "self, name, bases", "cls, name, attrs", "name, bases, attrs"],
+            "answer": "cls, name, bases, attrs"
+          },
+          {
+            "question": "When should you use metaclasses?",
+            "options": ["Always", "Never", "When you need to control class creation in complex ways", "Only for inheritance"],
+            "answer": "When you need to control class creation in complex ways"
+          },
+          {
+            "question": "What is the famous quote about metaclasses?",
+            "options": ["Use them everywhere", "If you're not sure you need them, you don't", "They're always better than classes", "Avoid them completely"],
+            "answer": "If you're not sure you need them, you don't"
+          }
+        ]
+      }
+    }
+  }
+}

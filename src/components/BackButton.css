@@ -1,0 +1,14 @@
+.btn.btn-back {
+  background: transparent;
+  color: var(--text-muted, #cbd5e1);
+  border: 1px solid var(--border, #334155);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.btn.btn-back:hover {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--text, #e2e8f0);
+  border-color: var(--border-strong, #475569);
+}

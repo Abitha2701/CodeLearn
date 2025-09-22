@@ -13,6 +13,7 @@ import Lesson from './pages/Lesson';
 import ExploreMoreCourses from './pages/ExploreMoreCourses';
 import LanguageCategory from './pages/LanguageCategory';
 import TopicSelection from './components/TopicSelection';
+import QuizPage from './pages/QuizPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
            <Route path="/course/:courseId/topics" element={<TopicSelection />} />
           <Route path="/course/:courseId/quiz/:itemId" element={<Quiz />} />
           <Route path="/course/:courseId/lesson/:itemId" element={<Lesson />} />
+          <Route path="/course/:courseId/level/:levelKey/quiz" element={<QuizPage />} />
         </Routes>
       </Router>
     </AuthProvider>

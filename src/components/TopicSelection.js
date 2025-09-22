@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './TopicSelection.css';
+import { COMPREHENSIVE_COURSES } from '../data/comprehensiveCourses';
+import BackButton from './BackButton';
 
 const TopicSelection = () => {
   const { courseId } = useParams();
@@ -34,19 +36,84 @@ const TopicSelection = () => {
         { id: 'advanced-oop-concepts', name: 'Advanced OOP Concepts', icon: '🎓', description: 'Master advanced OOP techniques' },
         { id: 'metaclasses', name: 'Metaclasses', icon: '🔮', description: 'Classes that create classes' }
       ]
+    },
+    java: {
+      beginner: [
+        { id: 'introduction-to-java', name: 'Introduction to Java', icon: '☕', description: 'History, JDK/JRE/JVM, first program' },
+        { id: 'variables-and-data-types', name: 'Variables and Data Types', icon: '📊', description: 'Primitive types, reference types' },
+        { id: 'operators-arithmetic-logical-bitwise', name: 'Operators (arithmetic, logical, bitwise)', icon: '➗', description: 'Operators and precedence' },
+        { id: 'control-flow-if-else-switch', name: 'Control Flow (if-else, switch)', icon: '🔀', description: 'Branching statements' },
+        { id: 'loops-for-while-do', name: 'Loops (for, while, do-while)', icon: '🔁', description: 'Iteration constructs' },
+        { id: 'arrays-1d-2d', name: 'Arrays (1D, 2D)', icon: '🧮', description: 'Array basics and traversal' }
+      ],
+      intermediate: [
+        { id: 'object-oriented-programming', name: 'OOP Fundamentals', icon: '🏗️', description: 'Classes, objects, methods' },
+        { id: 'constructors-and-overloading', name: 'Constructors & Overloading', icon: '🧱', description: 'Initialization patterns' },
+        { id: 'inheritance-and-polymorphism', name: 'Inheritance & Polymorphism', icon: '🧬', description: 'Extending behavior' },
+        { id: 'encapsulation-and-abstraction', name: 'Encapsulation & Abstraction', icon: '🔒', description: 'Hiding internals' },
+        { id: 'exceptions-and-try-catch', name: 'Exception Handling', icon: '🛡️', description: 'try/catch/finally, throws' }
+      ],
+      advanced: [
+        { id: 'collections-framework', name: 'Collections Framework', icon: '📚', description: 'List, Set, Map, generics' },
+        { id: 'multithreading-and-concurrency', name: 'Multithreading & Concurrency', icon: '🧵', description: 'Threads, sync, executors' },
+        { id: 'jvm-and-garbage-collection', name: 'JVM & Garbage Collection', icon: '♻️', description: 'Memory model and GC' }
+      ]
     }
   };
 
   useEffect(() => {
-    if (courseTopics[courseId]) {
-      const allTopics = [
-        ...courseTopics[courseId].beginner.map(topic => ({ ...topic, level: 'beginner', difficulty: 'Easy' })),
-        ...courseTopics[courseId].intermediate.map(topic => ({ ...topic, level: 'intermediate', difficulty: 'Medium' })),
-        ...courseTopics[courseId].advanced.map(topic => ({ ...topic, level: 'advanced', difficulty: 'Hard' }))
-      ];
-      setTopics(allTopics);
-    }
-    setLoading(false);
+    const load = async () => {
+      try {
+        // Try dynamic backend topics first
+        const resp = await fetch(`http://localhost:5001/api/quizzes/topics/${courseId}`);
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.success && Array.isArray(data.topics)) {
+            setTopics(data.topics);
+            setLoading(false);
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Falling back to built-in topics for', courseId, e?.message);
+      }
+
+      // Fallback to built-in map
+      if (courseTopics[courseId]) {
+        const allTopics = [
+          ...courseTopics[courseId].beginner.map(topic => ({ ...topic, level: 'beginner', difficulty: 'Easy' })),
+          ...courseTopics[courseId].intermediate.map(topic => ({ ...topic, level: 'intermediate', difficulty: 'Medium' })),
+          ...courseTopics[courseId].advanced.map(topic => ({ ...topic, level: 'advanced', difficulty: 'Hard' }))
+        ];
+        setTopics(allTopics);
+      } else {
+        // Ultimate fallback: build from COMPREHENSIVE_COURSES if available
+        const course = COMPREHENSIVE_COURSES[courseId];
+        if (course && course.levels) {
+          const slug = (s) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+          const built = [];
+          Object.entries(course.levels).forEach(([levelKey, level]) => {
+            const levelDiff = levelKey === 'beginner' ? 'Easy' : levelKey === 'intermediate' ? 'Medium' : 'Hard';
+            (level.topics || []).forEach((t) => {
+              built.push({
+                id: slug(t),
+                name: t,
+                icon: '📘',
+                description: t,
+                level: levelKey,
+                difficulty: levelDiff
+              });
+            });
+          });
+          setTopics(built);
+        } else {
+          setTopics([]);
+        }
+      }
+      setLoading(false);
+    };
+
+    load();
   }, [courseId]);
 
   const handleTopicSelect = (topic) => {
@@ -86,9 +153,7 @@ const TopicSelection = () => {
   return (
     <div className="topic-selection-page">
       <div className="topic-header">
-        <button className="back-button" onClick={() => navigate(-1)}>
-          ← Back
-        </button>
+        <BackButton />
         <div className="course-info">
           <h1>{getCourseName()} Topics</h1>
           <p>Choose a topic to start your quiz journey</p>

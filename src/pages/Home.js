@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Home.css';
-
 const programmingLanguages = [
   'Python', 'Java', 'C++', 'React', 'Node.js', 'HTML', 'CSS', 'JavaScript', 'Go', 'Rust',
 ];
-
 const Home = () => {
   const navigate = useNavigate();
   const { login, signup, loading } = useAuth();
-
   const [isSignUp, setIsSignUp] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,7 +18,6 @@ const Home = () => {
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
   const toggleForm = () => {
     setIsSignUp(prev => !prev);
     setSuccessMsg('');
@@ -39,7 +35,6 @@ const handleSubmit = async (e) => {
   setIsLoading(true);
   setErrorMsg('');
   setSuccessMsg('');
-
   try {
     if (isSignUp) {
       // Signup
@@ -48,7 +43,6 @@ const handleSubmit = async (e) => {
         setIsLoading(false);
         return;
       }
-
       const result = await signup({
         name,
         email,
@@ -116,7 +110,6 @@ const handleSubmit = async (e) => {
             </div>
           </div>
         </div>
-
         <div className="home-right">
           <div className="login-card">
             <div className="login-icon">{'<>'}</div>

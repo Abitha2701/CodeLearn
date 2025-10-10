@@ -14,6 +14,9 @@ const mlService = require('./services/mlService');
 // Import route modules
 const learningPathRoutes = require('./routes/learningPath');
 const mlQuizRoutes = require('./routes/mlQuiz');
+const topicsRoutes = require('./routes/topics');
+const videosRoutes = require('./routes/videos');
+const progressRoutes = require('./routes/progress');
 
 // Load environment variables from the correct path
 dotenv.config({ path: path.join(__dirname, '.env') });
@@ -26,6 +29,9 @@ app.use(express.json());
 // Mount route modules
 app.use('/api/learning-paths', learningPathRoutes);
 app.use('/api/ml-quiz', mlQuizRoutes);
+app.use('/api/topics', topicsRoutes);
+app.use('/api/videos', videosRoutes);
+app.use('/api/progress', progressRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('✅ Connected to MongoDB Atlas'))

@@ -5,6 +5,7 @@ import { COMPREHENSIVE_COURSES } from '../data/comprehensiveCourses';
 import { useProgress } from '../hooks/useProgress';
 import { chooseNextItem } from './logic';
 import './CoursePath.css';
+import { openTopVideoInNewTab } from '../hooks/useVideos';
 
 export default function CoursePath() {
   const { courseId } = useParams();
@@ -127,6 +128,16 @@ export default function CoursePath() {
                         >
                           Open
                         </Link>
+                        {it.type === 'lesson' && (
+                          <button
+                            onClick={async () => {
+                              await openTopVideoInNewTab(courseId, it.title);
+                            }}
+                            className="btn btn-secondary"
+                          >
+                            🎥 Watch
+                          </button>
+                        )}
                         <button onClick={() => toggleDone(it.id)}>
                           {isDone ? 'Undo' : 'Mark done'}
                         </button>
@@ -179,6 +190,16 @@ export default function CoursePath() {
                           >
                             Open
                           </Link>
+                          {it.type === 'lesson' && (
+                            <button
+                              onClick={async () => {
+                                await openTopVideoInNewTab(courseId, it.title);
+                              }}
+                              className="btn btn-secondary"
+                            >
+                              🎥 Watch
+                            </button>
+                          )}
                           <button onClick={() => toggleDone(it.id)}>
                             {isDone ? 'Undo' : 'Mark done'}
                           </button>

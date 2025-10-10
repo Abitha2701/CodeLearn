@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { LEARNING_PATHS } from "../data/learningPaths";
 import { COMPREHENSIVE_COURSES } from "../data/comprehensiveCourses";
 import { useProgress } from "../hooks/useProgress";
+import { useTopicVideos } from "../hooks/useVideos";
 
 export default function Lesson() {
   const { courseId, itemId } = useParams();
@@ -52,6 +53,14 @@ export default function Lesson() {
       }
     }
   }
+
+  // Fetch top videos for this lesson topic/title - must be before early returns
+  const { videos, loading: videosLoading } = useTopicVideos(
+    courseId,
+    item?.title || '',
+    { enabled: !!item && item.type === 'lesson' }
+  );
+  const topVideoUrl = videos && videos.length > 0 ? `https://www.youtube.com/watch?v=${videos[0].youtubeVideoId}` : null;
 
   // ✅ Only render after hook calls
   if (!course && !comprehensiveCourse) return <div>❌ Course not found.</div>;
@@ -142,6 +151,17 @@ export default function Lesson() {
 
       {/* Lesson Actions */}
       <div className="lesson-actions">
+        {videosLoading ? (
+          <button className="back-btn" disabled>Loading video…</button>
+        ) : topVideoUrl ? (
+          <a href={topVideoUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ marginRight: 12 }}>
+            🎥 Watch Video
+          </a>
+        ) : (
+          <span className="meta-item" style={{ marginRight: 12 }}>
+            📺 No video found
+          </span>
+        )}
         <button onClick={handleMarkComplete} className="complete-btn">
           ✅ Mark as Complete
         </button>

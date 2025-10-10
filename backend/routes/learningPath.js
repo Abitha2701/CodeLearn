@@ -3,6 +3,7 @@ const router = express.Router();
 const LearningPath = require('../models/LearningPath');
 const mlService = require('../services/mlService');
 const User = require('../models/User');
+const { getTopicVideos } = require('../services/youtube');
 
 // Middleware to verify JWT token (assuming it's defined in server.js)
 const authenticateToken = (req, res, next) => {
@@ -25,6 +26,47 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
+// Helper: enrich steps with top video links for lesson/video steps
+async function enrichStepsWithVideos(courseId, steps, limit = 3) {
+  if (!Array.isArray(steps)) return steps;
+  const enriched = [];
+  for (const step of steps) {
+    if (step && (step.type === 'lesson' || step.type === 'video')) {
+      const topics = step.topics || [];
+      const videosPerTopic = [];
+      let firstVideoUrl = null;
+      for (const topicId of topics) {
+        try {
+          const titleGuess = String(topicId || '').replace(/-/g, ' ');
+          const result = await getTopicVideos(titleGuess, courseId, []);
+          const topVideos = (result && result.videos) ? result.videos.slice(0, Math.max(1, Number(limit) || 3)) : [];
+          const mapped = topVideos.map(v => ({
+            youtubeVideoId: v.youtubeVideoId,
+            title: v.title,
+            channel: v.channel,
+            url: `https://www.youtube.com/watch?v=${v.youtubeVideoId}`
+          }));
+          if (!firstVideoUrl && mapped.length > 0) {
+            firstVideoUrl = mapped[0].url;
+          }
+          videosPerTopic.push({ topicId, videos: mapped });
+        } catch (_) {
+          videosPerTopic.push({ topicId, videos: [] });
+        }
+      }
+      const base = step.toObject?.() || step;
+      const content = { ...(base.content || {}) };
+      if (firstVideoUrl) {
+        content.videoUrl = firstVideoUrl;
+      }
+      enriched.push({ ...base, content, videoRecommendations: videosPerTopic });
+    } else {
+      enriched.push(step);
+    }
+  }
+  return enriched;
+}
+
 // Create or get personalized learning path
 router.post('/create/:courseId', authenticateToken, async (req, res) => {
   try {
@@ -32,6 +74,9 @@ router.post('/create/:courseId', authenticateToken, async (req, res) => {
     const { preferences, goals } = req.body;
     const userId = req.user.userId;
     const force = (req.query.force === 'true');
+    const includeParam = req.query.includeVideos;
+    const includeVideos = includeParam === undefined ? true : includeParam === 'true';
+    const videoLimit = req.query.videoLimit ? parseInt(req.query.videoLimit, 10) : 3;
 
     console.log(`🎯 Creating personalized learning path for user ${userId}, course ${courseId}`);
 
@@ -41,9 +86,13 @@ router.post('/create/:courseId', authenticateToken, async (req, res) => {
     // If a path exists but has zero steps, or force=true, regenerate it
     if (existingPath && !force && existingPath.steps && existingPath.steps.length > 0) {
       console.log('📚 Existing learning path found, returning it');
+      const lpObj = existingPath.toObject ? existingPath.toObject() : existingPath;
+      if (includeVideos) {
+        lpObj.steps = await enrichStepsWithVideos(courseId, lpObj.steps, videoLimit);
+      }
       return res.json({
         success: true,
-        learningPath: existingPath,
+        learningPath: lpObj,
         message: 'Existing learning path retrieved'
       });
     }
@@ -76,9 +125,13 @@ router.post('/create/:courseId', authenticateToken, async (req, res) => {
 
     console.log(`✅ Created personalized learning path with ${personalizedPath.steps.length} steps`);
     
+    const savedObj = personalizedPath.toObject ? personalizedPath.toObject() : personalizedPath;
+    if (includeVideos) {
+      savedObj.steps = await enrichStepsWithVideos(courseId, savedObj.steps, videoLimit);
+    }
     res.json({
       success: true,
-      learningPath: personalizedPath,
+      learningPath: savedObj,
       message: 'Personalized learning path created successfully'
     });
 
@@ -97,6 +150,7 @@ router.get('/:courseId', authenticateToken, async (req, res) => {
   try {
     const { courseId } = req.params;
     const userId = req.user.userId;
+    const includeVideos = (req.query.includeVideos === 'true');
 
     const learningPath = await LearningPath.findOne({ 
       userId, 
@@ -111,9 +165,13 @@ router.get('/:courseId', authenticateToken, async (req, res) => {
       });
     }
 
+    const lpObj = learningPath.toObject ? learningPath.toObject() : learningPath;
+    if (includeVideos) {
+      lpObj.steps = await enrichStepsWithVideos(courseId, lpObj.steps, videoLimit);
+    }
     res.json({
       success: true,
-      learningPath
+      learningPath: lpObj
     });
 
   } catch (error) {

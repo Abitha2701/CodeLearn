@@ -5,6 +5,7 @@ import { COMPREHENSIVE_COURSES } from "../data/comprehensiveCourses";
 import { useProgress } from "../hooks/useProgress";
 import { perfScore } from "./logic";
 import { useAuth } from "../context/AuthContext";
+import { apiFetch } from "../api/client";
 import "./Quiz.css";
 import BackButton from "../components/BackButton";
 
@@ -239,7 +240,7 @@ export default function Quiz() {
           if (!isAuthenticated || !token) {
             throw new Error('Login required for adaptive quiz');
           }
-          const resp = await fetch(`http://localhost:5001/api/ml-quiz/adaptive/${courseId}/${adaptiveStepId}`, {
+          const resp = await apiFetch(`/api/ml-quiz/adaptive/${courseId}/${adaptiveStepId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           if (!resp.ok) {
@@ -257,7 +258,7 @@ export default function Quiz() {
         // Check if itemId is a direct topic ID (doesn't contain '-quiz')
         if (!itemId.includes('-quiz')) {
           // Direct topic ID - use new API endpoint
-          const response = await fetch(`http://localhost:5001/api/quizzes/topic/${courseId}/${itemId}`);
+          const response = await apiFetch(`/api/quizzes/topic/${courseId}/${itemId}`);
           
           if (!response.ok) {
             // Fallback to local generation
@@ -310,8 +311,8 @@ export default function Quiz() {
 
           console.log(`Fetching quiz for: ${courseId}/${levelId}/${topicId}`);
           
-          const response = await fetch(
-            `http://localhost:5001/api/quiz/templates/${courseId}/${levelId}/${topicId}`
+          const response = await apiFetch(
+            `/api/quiz/templates/${courseId}/${levelId}/${topicId}`
           );
           
           if (response.ok) {
@@ -325,7 +326,7 @@ export default function Quiz() {
           }
 
           // If legacy template not found, try direct topic route (ML fallback + cache)
-          const fallbackResp = await fetch(`http://localhost:5001/api/quizzes/topic/${courseId}/${topicId}`);
+          const fallbackResp = await apiFetch(`/api/quizzes/topic/${courseId}/${topicId}`);
           if (fallbackResp.ok) {
             const fb = await fallbackResp.json();
             if (fb.success && fb.questions?.length) {
@@ -437,7 +438,7 @@ export default function Quiz() {
     try {
       if (adaptiveStepId && isAuthenticated && token && scorePct >= 80) {
         // Mark step complete in learning path
-        await fetch(`http://localhost:5001/api/learning-paths/${courseId}/complete-step`, {
+        await apiFetch(`/api/learning-paths/${courseId}/complete-step`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -447,7 +448,7 @@ export default function Quiz() {
         }).catch(() => {});
 
         // Fetch next step
-        const nextRes = await fetch(`http://localhost:5001/api/learning-paths/${courseId}/next-step`, {
+        const nextRes = await apiFetch(`/api/learning-paths/${courseId}/next-step`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const nextData = await nextRes.json().catch(() => ({}));
@@ -468,7 +469,7 @@ export default function Quiz() {
       } else if (adaptiveStepId && isAuthenticated && token && scorePct < 80) {
         // Below threshold: request backend to adapt/ease the path and notify user
         try {
-          await fetch(`http://localhost:5001/api/learning-paths/${courseId}/adapt-step`, {
+          await apiFetch(`/api/learning-paths/${courseId}/adapt-step`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -493,7 +494,7 @@ export default function Quiz() {
         options: q.options,
         answer: q.correctAnswer || null
       }));
-      const resp = await fetch('http://localhost:5001/api/ml-quiz/validate-raw', {
+      const resp = await apiFetch('/api/ml-quiz/validate-raw', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ courseId, topicId: item?.topic || topicId, questions: payloadQuestions })

@@ -4,6 +4,7 @@ import { COMPREHENSIVE_COURSES } from '../data/comprehensiveCourses';
 import './CourseDetails.css';
 import { useAuth } from '../context/AuthContext';
 import BackButton from '../components/BackButton';
+import { apiFetch } from '../api/client';
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -48,7 +49,7 @@ const CourseDetails = () => {
       setLpLoading(true);
       setLpError("");
       console.log('[LP] Creating personalized path for', courseId);
-      const res = await fetch(`http://localhost:5001/api/learning-paths/create/${courseId}?force=true`, {
+      const res = await apiFetch(`/api/learning-paths/create/${courseId}?force=true`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ const CourseDetails = () => {
       setLpLoading(true);
       setLpError("");
       console.log('[LP] Fetching next step for', courseId);
-      const res = await fetch(`http://localhost:5001/api/learning-paths/${courseId}/next-step`, {
+      const res = await apiFetch(`/api/learning-paths/${courseId}/next-step`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       let data = null;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, memo } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { apiFetch } from '../api/client';
 import './QuizPage.css'; // You'll need to create this CSS file
 
 const QuestionResultItem = memo(function QuestionResultItem({ q, index, userAnswer, feedback, expanded, onToggle }) {
@@ -51,7 +52,7 @@ const QuizPage = () => {
       setIsLoading(true);
       try {
         // Replace with your actual backend endpoint
-        const response = await fetch('/api/quiz/generate', {
+        const response = await apiFetch('/api/quiz/generate', {
           method: 'POST', // Or GET with query params, depending on your API
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ courseId, levelKey, topics })
@@ -84,7 +85,7 @@ const QuizPage = () => {
   const handleSubmitQuiz = async () => {
     setResults('loading');
     try {
-      const response = await fetch('/api/quiz/validate', {
+      const response = await apiFetch('/api/quiz/validate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ courseId, levelKey, userAnswers, questions: questions.map(q => q.id) }) // Send question IDs and answers

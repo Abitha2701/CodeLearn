@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { apiFetch } from '../api/client';
 
 const AuthContext = createContext();
 
@@ -21,7 +22,7 @@ export const AuthProvider = ({ children }) => {
       const savedToken = localStorage.getItem('token');
       if (savedToken) {
         try {
-          const response = await fetch('http://localhost:5001/api/verify-token', {
+          const response = await apiFetch('/api/verify-token', {
             headers: {
               'Authorization': `Bearer ${savedToken}`
             }
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }) => {
             setToken(savedToken);
             
             // Fetch user profile
-            const profileResponse = await fetch('http://localhost:5001/api/profile', {
+            const profileResponse = await apiFetch('/api/profile', {
               headers: {
                 'Authorization': `Bearer ${savedToken}`
               }
@@ -61,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:5001/api/login', {
+      const response = await apiFetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +88,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (userData) => {
     try {
-      const response = await fetch('http://localhost:5001/api/signup', {
+      const response = await apiFetch('/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +115,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       if (token) {
-        await fetch('http://localhost:5001/api/logout', {
+        await apiFetch('/api/logout', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './TopicSelection.css';
 import { COMPREHENSIVE_COURSES } from '../data/comprehensiveCourses';
 import BackButton from './BackButton';
+import { apiFetch } from '../api/client';
 
 const TopicSelection = () => {
   const { courseId } = useParams();
@@ -65,7 +66,7 @@ const TopicSelection = () => {
     const load = async () => {
       try {
         // Try dynamic backend topics first
-        const resp = await fetch(`http://localhost:5001/api/quizzes/topics/${courseId}`);
+        const resp = await apiFetch(`/api/quizzes/topics/${courseId}`);
         if (resp.ok) {
           const data = await resp.json();
           if (data.success && Array.isArray(data.topics)) {

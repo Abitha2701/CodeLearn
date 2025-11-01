@@ -983,7 +983,7 @@ export const COMPREHENSIVE_COURSES = {
   css: {
     title: "CSS",
     icon: "🎨",
-    category: "Frontend Technologies", 
+    category: "Frontend Technologies",
     description: "Style and layout web pages with CSS",
     totalLessons: 30,
     estimatedHours: 40,
@@ -1049,6 +1049,598 @@ export const COMPREHENSIVE_COURSES = {
           "https://www.youtube.com/watch?v=Xgnfky9-e68", // Modern CSS
           "https://www.youtube.com/watch?v=qm0IfG1GyZU", // CSS-in-JS
           "https://www.youtube.com/watch?v=TUD1AWZVgQ8" // CSS Performance
+        ]
+      }
+    }
+  },
+
+  cpp: {
+    title: "C++",
+    icon: "💻",
+    category: "Programming Languages",
+    description: "Powerful systems programming language",
+    totalLessons: 35,
+    estimatedHours: 50,
+    levels: {
+      beginner: {
+        title: "C++ Basics",
+        color: "#4CAF50",
+        topics: [
+          "Introduction to C++",
+          "C++ Syntax and Structure",
+          "Variables and Data Types",
+          "Operators (Arithmetic, Logical, Bitwise)",
+          "Control Flow (if-else, switch)",
+          "Loops (for, while, do-while)",
+          "Functions",
+          "Arrays and Strings",
+          "Pointers Basics",
+          "Memory Management"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=vLnPwxZdW4Y", // C++ Full Course
+          "https://www.youtube.com/watch?v=8jLOx1hD3_o", // C++ Crash Course
+          "https://www.youtube.com/watch?v=Rub-JsjMhWY" // C++ Tutorial
+        ]
+      },
+      intermediate: {
+        title: "Object-Oriented C++",
+        color: "#FF9800",
+        topics: [
+          "Classes and Objects",
+          "Constructors and Destructors",
+          "Inheritance",
+          "Polymorphism",
+          "Operator Overloading",
+          "Templates",
+          "Exception Handling",
+          "File I/O",
+          "STL Containers",
+          "Algorithms and Iterators"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=wN0x9eZLix4", // C++ OOP
+          "https://www.youtube.com/watch?v=2BP8NhxjrO0", // C++ STL
+          "https://www.youtube.com/watch?v=8jLOx1hD3_o" // C++ Intermediate
+        ]
+      },
+      advanced: {
+        title: "Advanced C++",
+        color: "#F44336",
+        topics: [
+          "Smart Pointers",
+          "Move Semantics",
+          "Lambda Expressions",
+          "Multithreading",
+          "Concurrency",
+          "Design Patterns",
+          "Template Metaprogramming",
+          "Performance Optimization",
+          "C++11/14/17/20 Features",
+          "Cross-platform Development"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=32BtvwS4DU4", // Modern C++
+          "https://www.youtube.com/watch?v=LL8wkskDlbs", // C++ Multithreading
+          "https://www.youtube.com/watch?v=NzDwUK0PlI0" // C++ Advanced
+        ]
+      }
+    }
+  },
+
+  go: {
+    title: "Go",
+    icon: "🌊",
+    category: "Programming Languages",
+    description: "Simple and efficient systems language",
+    totalLessons: 30,
+    estimatedHours: 45,
+    levels: {
+      beginner: {
+        title: "Go Basics",
+        color: "#4CAF50",
+        topics: [
+          "Introduction to Go",
+          "Go Installation and Setup",
+          "Basic Syntax",
+          "Variables and Constants",
+          "Data Types",
+          "Operators",
+          "Control Structures",
+          "Functions",
+          "Arrays and Slices",
+          "Maps and Structs"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=YS4e4q9oBaU", // Go Full Course
+          "https://www.youtube.com/watch?v=8uiZC0l4Ajw", // Go Crash Course
+          "https://www.youtube.com/watch?v=CF9S4QZuV30" // Go Tutorial
+        ]
+      },
+      intermediate: {
+        title: "Go Intermediate",
+        color: "#FF9800",
+        topics: [
+          "Pointers",
+          "Methods and Interfaces",
+          "Error Handling",
+          "Goroutines",
+          "Channels",
+          "Select Statement",
+          "File I/O",
+          "JSON Handling",
+          "HTTP Servers",
+          "Testing in Go"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=f6kdp27TYZs", // Go Concurrency
+          "https://www.youtube.com/watch?v=yyUHQIec83I", // Go Web Development
+          "https://www.youtube.com/watch?v=8uiZC0l4Ajw" // Go Intermediate
+        ]
+      },
+      advanced: {
+        title: "Advanced Go",
+        color: "#F44336",
+        topics: [
+          "Advanced Concurrency Patterns",
+          "Context Package",
+          "Reflection",
+          "Generics (Go 1.18+)",
+          "Performance Profiling",
+          "Microservices with Go",
+          "Database Integration",
+          "REST APIs",
+          "GraphQL",
+          "Deployment and DevOps"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=5bYO60-qYDU", // Advanced Go
+          "https://www.youtube.com/watch?v=KBzlmuB0Xhc", // Go Microservices
+          "https://www.youtube.com/watch?v=VC9Nm1S3HEI" // Go Production
+        ]
+      }
+    }
+  },
+
+  rust: {
+    title: "Rust",
+    icon: "🦀",
+    category: "Programming Languages",
+    description: "Safe and concurrent systems programming",
+    totalLessons: 35,
+    estimatedHours: 55,
+    levels: {
+      beginner: {
+        title: "Rust Basics",
+        color: "#4CAF50",
+        topics: [
+          "Introduction to Rust",
+          "Rust Installation",
+          "Hello World",
+          "Variables and Mutability",
+          "Data Types",
+          "Functions",
+          "Control Flow",
+          "Ownership",
+          "Borrowing",
+          "Slices"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=zF34dRivLOw", // Rust Full Course
+          "https://www.youtube.com/watch?v=MsocPEZBd-M", // Rust Crash Course
+          "https://www.youtube.com/watch?v=2hXNd6x9sZs" // Rust Tutorial
+        ]
+      },
+      intermediate: {
+        title: "Rust Intermediate",
+        color: "#FF9800",
+        topics: [
+          "Structs",
+          "Enums",
+          "Methods",
+          "Pattern Matching",
+          "Error Handling",
+          "Generic Types",
+          "Traits",
+          "Lifetimes",
+          "Collections",
+          "Smart Pointers"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=U1EFgCNLDB8", // Rust Ownership
+          "https://www.youtube.com/watch?v=DnT_7M7L7vo", // Rust Traits
+          "https://www.youtube.com/watch?v=MsocPEZBd-M" // Rust Intermediate
+        ]
+      },
+      advanced: {
+        title: "Advanced Rust",
+        color: "#F44336",
+        topics: [
+          "Unsafe Rust",
+          "Macros",
+          "Async Programming",
+          "WebAssembly",
+          "FFI (Foreign Function Interface)",
+          "Embedded Systems",
+          "Performance Optimization",
+          "Testing and Documentation",
+          "Cargo Workspaces",
+          "Publishing Crates"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=3cURk_KL0nE", // Advanced Rust
+          "https://www.youtube.com/watch?v=9l1mZKT3vlU", // Rust Async
+          "https://www.youtube.com/watch?v=2hXNd6x9sZs" // Rust Advanced
+        ]
+      }
+    }
+  },
+
+  kotlin: {
+    title: "Kotlin",
+    icon: "🔶",
+    category: "Programming Languages",
+    description: "Modern programming language for JVM, Android, and beyond",
+    totalLessons: 30,
+    estimatedHours: 45,
+    levels: {
+      beginner: {
+        title: "Kotlin Basics",
+        color: "#4CAF50",
+        topics: [
+          "Introduction to Kotlin",
+          "Kotlin Installation and Setup",
+          "Basic Syntax",
+          "Variables and Data Types",
+          "Operators",
+          "Control Structures",
+          "Functions",
+          "Null Safety",
+          "Classes and Objects",
+          "Collections"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=F9UC9DY-vIU", // Kotlin Full Course
+          "https://www.youtube.com/watch?v=EExSSotojVI", // Kotlin Crash Course
+          "https://www.youtube.com/watch?v=H_oGi8uuDpA" // Kotlin Tutorial
+        ]
+      },
+      intermediate: {
+        title: "Kotlin Intermediate",
+        color: "#FF9800",
+        topics: [
+          "Object-Oriented Programming",
+          "Inheritance and Interfaces",
+          "Generics",
+          "Data Classes",
+          "Sealed Classes",
+          "Enums",
+          "Extension Functions",
+          "Lambdas and Higher-Order Functions",
+          "Collections API",
+          "Exception Handling"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=5flXf8nuq60", // Kotlin OOP
+          "https://www.youtube.com/watch?v=6P20npkvcb8", // Kotlin Generics
+          "https://www.youtube.com/watch?v=EExSSotojVI" // Kotlin Intermediate
+        ]
+      },
+      advanced: {
+        title: "Advanced Kotlin",
+        color: "#F44336",
+        topics: [
+          "Coroutines",
+          "Flow",
+          "Inline Functions",
+          "Operator Overloading",
+          "Reflection",
+          "DSL Creation",
+          "Android Development with Kotlin",
+          "Ktor Framework",
+          "Testing in Kotlin",
+          "Performance Optimization"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=9F9QeU_UlFo", // Kotlin Coroutines
+          "https://www.youtube.com/watch?v=0z_dwBGQQdg", // Kotlin DSL
+          "https://www.youtube.com/watch?v=5flXf8nuq60" // Kotlin Advanced
+        ]
+      }
+    }
+  },
+
+  swift: {
+    title: "Swift",
+    icon: "🦉",
+    category: "Programming Languages",
+    description: "Powerful and intuitive programming language for iOS and macOS",
+    totalLessons: 35,
+    estimatedHours: 50,
+    levels: {
+      beginner: {
+        title: "Swift Basics",
+        color: "#4CAF50",
+        topics: [
+          "Introduction to Swift",
+          "Swift Installation and Setup",
+          "Basic Syntax",
+          "Variables and Constants",
+          "Data Types",
+          "Operators",
+          "Control Flow",
+          "Functions",
+          "Optionals",
+          "Arrays and Dictionaries"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=comQ1-x2a1Q", // Swift Full Course
+          "https://www.youtube.com/watch?v=8Xg7E9shq0U", // Swift Crash Course
+          "https://www.youtube.com/watch?v=q2zW6E8Z5oE" // Swift Tutorial
+        ]
+      },
+      intermediate: {
+        title: "Swift Intermediate",
+        color: "#FF9800",
+        topics: [
+          "Classes and Structures",
+          "Properties",
+          "Methods",
+          "Inheritance",
+          "Initialization",
+          "Deinitialization",
+          "Protocols",
+          "Extensions",
+          "Generics",
+          "Error Handling"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=9bZH8u4C1O4", // Swift OOP
+          "https://www.youtube.com/watch?v=XY__7E4y9F0", // Swift Protocols
+          "https://www.youtube.com/watch?v=8Xg7E9shq0U" // Swift Intermediate
+        ]
+      },
+      advanced: {
+        title: "Advanced Swift",
+        color: "#F44336",
+        topics: [
+          "Memory Management (ARC)",
+          "Closures",
+          "Concurrency (GCD)",
+          "Async/Await",
+          "SwiftUI Basics",
+          "Custom Operators",
+          "Advanced Generics",
+          "Reflection and Metatypes",
+          "Testing in Swift",
+          "Performance Optimization"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=0CKnZKzE7qE", // Swift Concurrency
+          "https://www.youtube.com/watch?v=bzZHRk0BS0o", // SwiftUI Tutorial
+          "https://www.youtube.com/watch?v=9bZH8u4C1O4" // Swift Advanced
+        ]
+      }
+    }
+  },
+
+  ruby: {
+    title: "Ruby",
+    icon: "💎",
+    category: "Programming Languages",
+    description: "Dynamic, open-source programming language focused on simplicity",
+    totalLessons: 30,
+    estimatedHours: 45,
+    levels: {
+      beginner: {
+        title: "Ruby Basics",
+        color: "#4CAF50",
+        topics: [
+          "Introduction to Ruby",
+          "Ruby Installation and Setup",
+          "Basic Syntax",
+          "Variables and Constants",
+          "Data Types",
+          "Operators",
+          "Control Structures",
+          "Methods",
+          "Arrays and Hashes",
+          "Strings and Symbols"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=t_ispmWmdjY", // Ruby Full Course
+          "https://www.youtube.com/watch?v=8w_ZcWo8r0I", // Ruby Crash Course
+          "https://www.youtube.com/watch?v=6w6E0xH9YKo" // Ruby Tutorial
+        ]
+      },
+      intermediate: {
+        title: "Ruby Intermediate",
+        color: "#FF9800",
+        topics: [
+          "Object-Oriented Programming",
+          "Classes and Objects",
+          "Inheritance",
+          "Modules and Mixins",
+          "Blocks, Procs, and Lambdas",
+          "Exception Handling",
+          "File I/O",
+          "Regular Expressions",
+          "Metaprogramming Basics",
+          "Gems and Bundler"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=Dji9Z4KRbYQ", // Ruby OOP
+          "https://www.youtube.com/watch?v=9Z3Z2Z3Z3Z3", // Ruby Metaprogramming
+          "https://www.youtube.com/watch?v=8w_ZcWo8r0I" // Ruby Intermediate
+        ]
+      },
+      advanced: {
+        title: "Advanced Ruby",
+        color: "#F44336",
+        topics: [
+          "Rails Framework Basics",
+          "Advanced Metaprogramming",
+          "Concurrency and Threading",
+          "Performance Optimization",
+          "Testing (RSpec)",
+          "Design Patterns in Ruby",
+          "DSL Creation",
+          "Ruby on Rails Advanced",
+          "API Development",
+          "Deployment"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=fmyvWz5TUWc", // Ruby on Rails
+          "https://www.youtube.com/watch?v=Dji9Z4KRbYQ", // Advanced Ruby
+          "https://www.youtube.com/watch?v=9Z3Z2Z3Z3Z3" // Ruby Advanced
+        ]
+      }
+    }
+  },
+
+  scala: {
+    title: "Scala",
+    icon: "⚖️",
+    category: "Programming Languages",
+    description: "Scalable language combining object-oriented and functional programming",
+    totalLessons: 35,
+    estimatedHours: 55,
+    levels: {
+      beginner: {
+        title: "Scala Basics",
+        color: "#4CAF50",
+        topics: [
+          "Introduction to Scala",
+          "Scala Installation and Setup",
+          "Basic Syntax",
+          "Variables and Data Types",
+          "Operators",
+          "Control Structures",
+          "Functions",
+          "Classes and Objects",
+          "Case Classes",
+          "Collections"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=DzFt0YkZo8M", // Scala Full Course
+          "https://www.youtube.com/watch?v=4y2nL5RKjSQ", // Scala Crash Course
+          "https://www.youtube.com/watch?v=3s5_9iKv9Qw" // Scala Tutorial
+        ]
+      },
+      intermediate: {
+        title: "Scala Intermediate",
+        color: "#FF9800",
+        topics: [
+          "Object-Oriented Programming",
+          "Traits",
+          "Inheritance",
+          "Pattern Matching",
+          "Higher-Order Functions",
+          "Immutability",
+          "Options and Either",
+          "For Comprehensions",
+          "Implicit Parameters",
+          "Type Classes"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=ozL0K8B3LUE", // Scala OOP
+          "https://www.youtube.com/watch?v=4y2nL5RKjSQ", // Scala Functional
+          "https://www.youtube.com/watch?v=DzFt0YkZo8M" // Scala Intermediate
+        ]
+      },
+      advanced: {
+        title: "Advanced Scala",
+        color: "#F44336",
+        topics: [
+          "Advanced Functional Programming",
+          "Macros",
+          "Akka Framework",
+          "Spark with Scala",
+          "Type-Level Programming",
+          "Category Theory Concepts",
+          "Performance Optimization",
+          "Testing in Scala",
+          "Scalaz Library",
+          "Big Data Processing"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=ozL0K8B3LUE", // Advanced Scala
+          "https://www.youtube.com/watch?v=3s5_9iKv9Qw", // Scala Akka
+          "https://www.youtube.com/watch?v=4y2nL5RKjSQ" // Scala Advanced
+        ]
+      }
+    }
+  },
+
+  dart: {
+    title: "Dart",
+    icon: "🎯",
+    category: "Programming Languages",
+    description: "Client-optimized language for fast apps on any platform",
+    totalLessons: 25,
+    estimatedHours: 40,
+    levels: {
+      beginner: {
+        title: "Dart Basics",
+        color: "#4CAF50",
+        topics: [
+          "Introduction to Dart",
+          "Dart Installation and Setup",
+          "Basic Syntax",
+          "Variables and Data Types",
+          "Operators",
+          "Control Structures",
+          "Functions",
+          "Classes and Objects",
+          "Null Safety",
+          "Collections"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=Ej_Pcr4uC2Q", // Dart Full Course
+          "https://www.youtube.com/watch?v=5KlnlCq2M5Q", // Dart Crash Course
+          "https://www.youtube.com/watch?v=veMhP2K-DZM" // Dart Tutorial
+        ]
+      },
+      intermediate: {
+        title: "Dart Intermediate",
+        color: "#FF9800",
+        topics: [
+          "Object-Oriented Programming",
+          "Inheritance and Interfaces",
+          "Mixins",
+          "Generics",
+          "Asynchronous Programming",
+          "Futures and Streams",
+          "Error Handling",
+          "Libraries and Packages",
+          "File I/O",
+          "JSON Handling"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=veMhP2K-DZM", // Dart OOP
+          "https://www.youtube.com/watch?v=5KlnlCq2M5Q", // Dart Async
+          "https://www.youtube.com/watch?v=Ej_Pcr4uC2Q" // Dart Intermediate
+        ]
+      },
+      advanced: {
+        title: "Advanced Dart",
+        color: "#F44336",
+        topics: [
+          "Flutter Framework",
+          "Custom Widgets",
+          "State Management",
+          "Animations",
+          "Networking",
+          "Database Integration",
+          "Testing in Dart",
+          "Performance Optimization",
+          "Platform Channels",
+          "Publishing Packages"
+        ],
+        youtubeLinks: [
+          "https://www.youtube.com/watch?v=veMhP2K-DZM", // Flutter with Dart
+          "https://www.youtube.com/watch?v=5KlnlCq2M5Q", // Advanced Dart
+          "https://www.youtube.com/watch?v=Ej_Pcr4uC2Q" // Dart Advanced
         ]
       }
     }

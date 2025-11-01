@@ -213,7 +213,7 @@ const allCourses = {
           <h2>📖 All Available Courses</h2>
           <p className="section-subtitle">Choose from our comprehensive catalog of programming courses</p>
           <div className="courses-grid">
-            {Object.entries(COMPREHENSIVE_COURSES).slice(0, 8).map(([courseKey, course]) => (
+            {Object.entries(COMPREHENSIVE_COURSES).map(([courseKey, course]) => (
               <div className="course-card" key={courseKey}>
                 <div className="course-icon">{course.icon}</div>
                 <h3 className="course-title">{course.title}</h3>

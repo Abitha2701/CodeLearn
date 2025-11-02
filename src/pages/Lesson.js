@@ -4,12 +4,14 @@ import { LEARNING_PATHS } from "../data/learningPaths";
 import { COMPREHENSIVE_COURSES } from "../data/comprehensiveCourses";
 import { useProgress } from "../hooks/useProgress";
 import { useTopicVideos } from "../hooks/useVideos";
+import { useNotifications } from "../hooks/useNotifications";
 
 export default function Lesson() {
   const { courseId, itemId } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
-  
+  const { notify } = useNotifications();
+
   const name = state?.name || "Learner";
   const email = state?.email || "guest@example.com";
 
@@ -69,6 +71,7 @@ export default function Lesson() {
 
   const handleMarkComplete = () => {
     toggleDone(itemId);
+    notify.success('Lesson marked as complete!');
     navigate(`/course/${courseId}`, { state: { name, email } });
   };
 

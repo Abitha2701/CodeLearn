@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useStreak } from '../hooks/useStreak';
+
 import './Dashboard.css';
 // top imports
 import { COURSE_SLUGS } from '../data/learningPaths';
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { user, logout, isAuthenticated } = useAuth();
   const { currentStreak, bestStreak, weekActivity } = useStreak();
+
   
   // Use auth context user data or fallback to location state
   const name = user?.name || location.state?.name || 'Learner';

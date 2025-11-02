@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { NotificationProvider } from './components/NotificationProvider';
 import './App.css';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
@@ -14,26 +15,30 @@ import ExploreMoreCourses from './pages/ExploreMoreCourses';
 import LanguageCategory from './pages/LanguageCategory';
 import TopicSelection from './components/TopicSelection';
 import QuizPage from './pages/QuizPage';
+import PracticeSession from './pages/PracticeSession';
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<FrontPage/>} />
-          <Route path="/dashboard" element={<Dashboard />} />
-           <Route path="/profile" element={<ProfilePage />} />
-           <Route path='/home' element={<Home />} />
-           <Route path="/explore" element={<ExploreMoreCourses />} />
-           <Route path="/language/:categoryId" element={<LanguageCategory />} />
-           <Route path="/course-details/:courseId" element={<CourseDetails />} />
-           <Route path="/course/:courseId" element={<CoursePath />} />
-           <Route path="/course/:courseId/topics" element={<TopicSelection />} />
-          <Route path="/course/:courseId/quiz/:itemId" element={<Quiz />} />
-          <Route path="/course/:courseId/lesson/:itemId" element={<Lesson />} />
-          <Route path="/course/:courseId/level/:levelKey/quiz" element={<QuizPage />} />
-        </Routes>
-      </Router>
+      <NotificationProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<FrontPage/>} />
+            <Route path="/dashboard" element={<Dashboard />} />
+             <Route path="/profile" element={<ProfilePage />} />
+             <Route path='/home' element={<Home />} />
+             <Route path="/explore" element={<ExploreMoreCourses />} />
+             <Route path="/language/:categoryId" element={<LanguageCategory />} />
+             <Route path="/course-details/:courseId" element={<CourseDetails />} />
+             <Route path="/course/:courseId" element={<CoursePath />} />
+             <Route path="/course/:courseId/topics" element={<TopicSelection />} />
+            <Route path="/course/:courseId/quiz/:itemId" element={<Quiz />} />
+            <Route path="/course/:courseId/lesson/:itemId" element={<Lesson />} />
+            <Route path="/course/:courseId/level/:levelKey/quiz" element={<QuizPage />} />
+            <Route path="/course/:courseId/practice/:levelKey" element={<PracticeSession />} />
+          </Routes>
+        </Router>
+      </NotificationProvider>
     </AuthProvider>
   );
 }

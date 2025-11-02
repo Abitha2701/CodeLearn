@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useNotifications } from '../hooks/useNotifications';
 import './Home.css';
 const programmingLanguages = [
   'Python', 'Java', 'C++', 'React', 'Node.js', 'HTML', 'CSS', 'JavaScript', 'Go', 'Rust',
@@ -8,6 +9,7 @@ const programmingLanguages = [
 const Home = () => {
   const navigate = useNavigate();
   const { login, signup, loading } = useAuth();
+  const { notify } = useNotifications();
   const [isSignUp, setIsSignUp] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -39,7 +41,7 @@ const handleSubmit = async (e) => {
     if (isSignUp) {
       // Signup
       if (password !== confirmPassword) {
-        setErrorMsg('Passwords do not match!');
+        notify.error('Passwords do not match!');
         setIsLoading(false);
         return;
       }
@@ -52,29 +54,29 @@ const handleSubmit = async (e) => {
       });
 
       if (result.success) {
-        setSuccessMsg('Account created successfully! Redirecting...');
+        notify.success('Account created successfully! Redirecting...');
         setTimeout(() => {
           navigate('/dashboard');
         }, 1500);
       } else {
-        setErrorMsg(result.message);
+        notify.error(result.message);
       }
     } else {
       // Login
       const result = await login(email, password);
 
       if (result.success) {
-        setSuccessMsg('Login successful! Redirecting...');
+        notify.success('Login successful! Redirecting...');
         setTimeout(() => {
           navigate('/dashboard');
         }, 1500);
       } else {
-        setErrorMsg(result.message);
+        notify.error(result.message);
       }
     }
   } catch (error) {
     console.error('Authentication error:', error);
-    setErrorMsg('Account not registered. Please create account.');
+    notify.error('Account not registered. Please create account.');
   } finally {
     setIsLoading(false);
   }

@@ -5,6 +5,7 @@ import './CourseDetails.css';
 import { useAuth } from '../context/AuthContext';
 import BackButton from '../components/BackButton';
 import { apiFetch } from '../api/client';
+import { useNotifications } from '../hooks/useNotifications';
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -13,6 +14,7 @@ const CourseDetails = () => {
   
   const { name, email } = state || {};
   const { token, isAuthenticated } = useAuth();
+  const { notify } = useNotifications();
   const [lpLoading, setLpLoading] = useState(false);
   const [lpData, setLpData] = useState(null);
   const [lpError, setLpError] = useState("");
@@ -42,7 +44,7 @@ const CourseDetails = () => {
   // Create or fetch a personalized learning path
   const createPersonalizedPath = async () => {
     if (!isAuthenticated) {
-      alert('Please log in to create a personalized path.');
+      notify.warning('Please log in to create a personalized path.');
       return;
     }
     try {
@@ -84,7 +86,7 @@ const CourseDetails = () => {
 
   const continuePersonalizedPath = async () => {
     if (!isAuthenticated) {
-      alert('Please log in to continue your path.');
+      notify.warning('Please log in to continue your path.');
       return;
     }
     try {
@@ -108,7 +110,7 @@ const CourseDetails = () => {
       console.log('[LP] Next step result:', data);
       const next = data.nextStep;
       if (!next) {
-        alert('All steps completed!');
+        notify.success('All steps completed!');
         return;
       }
       if (next.type === 'lesson' || next.type === 'reading' || next.type === 'video') {
@@ -229,12 +231,25 @@ const CourseDetails = () => {
                   >
                     Start {level.title} →
                   </button>
-                  <button 
+                  <button
                     className="btn start-quiz-btn" // New button for quiz
                     onClick={() => startQuiz(levelKey, level.title, level.topics)}
                   >
                     Attend Quiz 📝
                   </button>
+                  {level.practiceSessions && level.practiceSessions.length > 0 && (
+                    <button
+                      className="btn attend-practice-btn"
+                      onClick={() => {
+                        // Navigate to practice session page
+                        navigate(`/course/${courseId}/practice/${levelKey}`, {
+                          state: { name, email, levelKey, levelTitle: level.title, practiceSessions: level.practiceSessions }
+                        });
+                      }}
+                    >
+                      Attend Practice Session 🏃‍♂️
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

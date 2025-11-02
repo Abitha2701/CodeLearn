@@ -28,6 +28,89 @@ export const COMPREHENSIVE_COURSES = {
           "https://www.youtube.com/watch?v=_uQrJ0TkZlc", // Python Full Course
           "https://www.youtube.com/watch?v=rfscVS0vtbw", // Python Beginner Tutorial
           "https://www.youtube.com/watch?v=kqtD5dpn9C8" // Python Crash Course
+        ],
+        practiceSessions: [
+          {
+            title: "Variables and Data Types Practice",
+            description: "Practice declaring variables, data types, and basic operations",
+            difficulty: "easy",
+            estimatedTime: "15 min",
+            questions: [
+              {
+                title: "Declare a variable",
+                description: "Create a variable named 'name' and assign it your name as a string.",
+                codeTemplate: "___ = '___'",
+                blanks: [
+                  { position: 0, expected: "name" },
+                  { position: 1, expected: "YourName" }
+                ],
+                expectedOutput: "YourName"
+              },
+              {
+                title: "Data types",
+                description: "Create variables of different types: integer, float, and boolean.",
+                codeTemplate: "age = ___\nheight = ___\nis_student = ___",
+                blanks: [
+                  { position: 0, expected: "25" },
+                  { position: 1, expected: "5.9" },
+                  { position: 2, expected: "True" }
+                ],
+                expectedOutput: "25\n5.9\nTrue"
+              }
+            ]
+          },
+          {
+            title: "Control Flow Challenges",
+            description: "Solve problems using if-else statements and loops",
+            difficulty: "medium",
+            estimatedTime: "30 min",
+            questions: [
+              {
+                title: "If-else statement",
+                description: "Write an if-else to check if a number is positive.",
+                codeTemplate: "num = 5\nif ___ > 0:\n    print('Positive')\nelse:\n    print('Not positive')",
+                blanks: [
+                  { position: 0, expected: "num" }
+                ],
+                expectedOutput: "Positive"
+              },
+              {
+                title: "For loop",
+                description: "Use a for loop to print numbers 1 to 3.",
+                codeTemplate: "for i in ___:\n    print(i)",
+                blanks: [
+                  { position: 0, expected: "range(1, 4)" }
+                ],
+                expectedOutput: "1\n2\n3"
+              }
+            ]
+          },
+          {
+            title: "Functions and Lists Project",
+            description: "Build a small program using functions and list operations",
+            difficulty: "medium",
+            estimatedTime: "45 min",
+            questions: [
+              {
+                title: "Define a function",
+                description: "Define a function that adds two numbers.",
+                codeTemplate: "def add(a, b):\n    return ___\nprint(add(2, 3))",
+                blanks: [
+                  { position: 0, expected: "a + b" }
+                ],
+                expectedOutput: "5"
+              },
+              {
+                title: "List operations",
+                description: "Create a list and append an item.",
+                codeTemplate: "fruits = ['apple', 'banana']\n___.append('orange')\nprint(fruits)",
+                blanks: [
+                  { position: 0, expected: "fruits" }
+                ],
+                expectedOutput: "['apple', 'banana', 'orange']"
+              }
+            ]
+          }
         ]
       },
       intermediate: {

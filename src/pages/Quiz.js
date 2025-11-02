@@ -6,6 +6,7 @@ import { useProgress } from "../hooks/useProgress";
 import { perfScore } from "./logic";
 import { useAuth } from "../context/AuthContext";
 import { apiFetch } from "../api/client";
+import { useNotifications } from "../hooks/useNotifications";
 import "./Quiz.css";
 import BackButton from "../components/BackButton";
 
@@ -17,6 +18,7 @@ export default function Quiz() {
   const adaptiveStepId = state?.mlAdaptiveStepId || null;
   const navigate = useNavigate();
   const { token, isAuthenticated } = useAuth();
+  const { notify } = useNotifications();
 
   const [quiz, setQuiz] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -394,7 +396,7 @@ export default function Quiz() {
     const correctAnswers = quiz.questions.filter((q, index) => {
       const userAnswer = answers[q.id];
       if (userAnswer === undefined) return false;
-      
+
       // Check if the question has a correctAnswer field (new format) or use fallback logic
       if (q.correctAnswer) {
         return q.options[userAnswer] === q.correctAnswer;
@@ -409,6 +411,8 @@ export default function Quiz() {
 
     setScore(scorePct);
     setShowResults(true);
+
+    notify.success(`Quiz completed! Score: ${scorePct}%`);
 
     // Update progress
     const perf = perfScore({
@@ -479,7 +483,7 @@ export default function Quiz() {
           });
         } catch {}
         // Inform the learner and keep them on results; they can continue or retake
-        alert('We adjusted your learning path to better fit your pace. Try the next step when ready.');
+        notify.warning('We adjusted your learning path to better fit your pace. Try the next step when ready.');
       }
     } catch (e) {
       // Non-fatal: keep user on results screen
